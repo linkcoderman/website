@@ -9,10 +9,6 @@ import {
   ChevronRight,
   Menu,
   X,
-  ExternalLink,
-  Github,
-  Twitter,
-  MessageCircle,
   CheckCircle,
   ArrowRight
 } from 'lucide-react';
@@ -44,26 +40,22 @@ const EinsteinLandingPage = () => {
     {
       icon: Shield,
       title: 'Zero-Knowledge Proofs',
-      description: 'Cryptographic verification ensuring game results are tamper-proof without revealing sensitive data.',
-      image: 'https://images.unsplash.com/photo-1732111816779-aeec50f788ba'
+      description: 'Cryptographic verification ensuring game results are tamper-proof without revealing sensitive data.'
     },
     {
       icon: Gamepad2,
       title: 'Web3 Gaming Infrastructure',
-      description: 'Complete blockchain gaming stack with seamless integration for developers and players.',
-      image: 'https://images.pexels.com/photos/5473950/pexels-photo-5473950.jpeg'
+      description: 'Complete blockchain gaming stack with seamless integration for developers and players.'
     },
     {
       icon: Zap,
       title: 'Lightning-Fast Verification',
-      description: 'Instant proof generation and verification for real-time gaming experiences.',
-      image: 'https://images.pexels.com/photos/4389986/pexels-photo-4389986.jpeg'
+      description: 'Instant proof generation and verification for real-time gaming experiences.'
     },
     {
       icon: Code,
       title: 'Developer-First SDK',
-      description: 'Comprehensive tools and APIs to integrate verifiable gaming logic into any game.',
-      image: 'https://images.unsplash.com/photo-1488229297570-58520851e868'
+      description: 'Comprehensive tools and APIs to integrate verifiable gaming logic into any game.'
     }
   ];
 
@@ -121,38 +113,25 @@ const EinsteinLandingPage = () => {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
-            <motion.div 
-              className="flex items-center space-x-2"
-              whileHover={{ scale: 1.05 }}
-            >
-              <div className="w-10 h-10 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-lg flex items-center justify-center">
-                <span className="text-black font-bold text-xl">E</span>
-              </div>
-              <span className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
-                Einstein
-              </span>
-            </motion.div>
+            <span className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
+              Einstein
+            </span>
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
               {navItems.map((item) => (
-                <motion.a
+                <span
                   key={item.name}
-                  href={item.href}
-                  className="text-gray-300 hover:text-cyan-400 transition-colors duration-300"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
+                  className="text-gray-300 hover:text-cyan-400 transition-colors duration-300 cursor-pointer"
                 >
                   {item.name}
-                </motion.a>
+                </span>
               ))}
-              <motion.button
+              <button
                 className="bg-gradient-to-r from-cyan-500 to-purple-600 px-6 py-2 rounded-full font-semibold hover:shadow-lg hover:shadow-cyan-500/25 transition-all duration-300"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
               >
                 Get Started
-              </motion.button>
+              </button>
             </div>
 
             {/* Mobile Menu Toggle */}
@@ -173,14 +152,13 @@ const EinsteinLandingPage = () => {
               className="md:hidden border-t border-gray-700 py-4"
             >
               {navItems.map((item) => (
-                <a
+                <span
                   key={item.name}
-                  href={item.href}
-                  className="block py-2 text-gray-300 hover:text-cyan-400 transition-colors"
+                  className="block py-2 text-gray-300 hover:text-cyan-400 transition-colors cursor-pointer"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}
-                </a>
+                </span>
               ))}
               <button className="w-full mt-4 bg-gradient-to-r from-cyan-500 to-purple-600 px-6 py-2 rounded-full font-semibold">
                 Get Started
@@ -193,14 +171,7 @@ const EinsteinLandingPage = () => {
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background */}
-        <div className="absolute inset-0">
-          <img 
-            src="https://images.pexels.com/photos/1089438/pexels-photo-1089438.jpeg"
-            alt="Matrix background"
-            className="w-full h-full object-cover opacity-30"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/80"></div>
-        </div>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/80"></div>
 
         {/* Animated background elements */}
         <div className="absolute inset-0 overflow-hidden">
@@ -259,22 +230,18 @@ const EinsteinLandingPage = () => {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
-            <motion.button
+            <button
               className="bg-gradient-to-r from-cyan-500 to-purple-600 px-8 py-4 rounded-full font-bold text-lg flex items-center space-x-2 hover:shadow-xl hover:shadow-cyan-500/25 transition-all duration-300"
-              whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(6, 182, 212, 0.4)" }}
-              whileTap={{ scale: 0.95 }}
             >
               <span>Start Building</span>
               <ArrowRight size={20} />
-            </motion.button>
+            </button>
             
-            <motion.button
+            <button
               className="border-2 border-cyan-400 text-cyan-400 px-8 py-4 rounded-full font-bold text-lg hover:bg-cyan-400 hover:text-black transition-all duration-300"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
             >
               View Documentation
-            </motion.button>
+            </button>
           </motion.div>
 
           <motion.div
@@ -352,15 +319,6 @@ const EinsteinLandingPage = () => {
                       <p className="text-gray-300 leading-relaxed">{feature.description}</p>
                     </div>
                   </div>
-                  
-                  <div className="relative h-48 rounded-xl overflow-hidden">
-                    <img 
-                      src={feature.image}
-                      alt={feature.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                  </div>
                 </div>
               </motion.div>
             ))}
@@ -370,13 +328,6 @@ const EinsteinLandingPage = () => {
 
       {/* How It Works Section */}
       <section id="how-it-works" className="py-20 relative">
-        <div className="absolute inset-0">
-          <img 
-            src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5"
-            alt="Matrix code background"
-            className="w-full h-full object-cover opacity-10"
-          />
-        </div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -485,14 +436,7 @@ const EinsteinLandingPage = () => {
 
       {/* CTA Section */}
       <section className="py-20 relative">
-        <div className="absolute inset-0">
-          <img 
-            src="https://images.unsplash.com/photo-1563089145-599997674d42"
-            alt="Cosmic background"
-            className="w-full h-full object-cover opacity-20"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-purple-900/50 to-black/80"></div>
-        </div>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-purple-900/50 to-black/80"></div>
         
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
@@ -512,23 +456,12 @@ const EinsteinLandingPage = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <motion.button
+              <button
                 className="bg-gradient-to-r from-cyan-500 to-purple-600 px-8 py-4 rounded-full font-bold text-lg flex items-center space-x-2 hover:shadow-xl hover:shadow-cyan-500/25 transition-all duration-300"
-                whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(6, 182, 212, 0.4)" }}
-                whileTap={{ scale: 0.95 }}
               >
                 <span>Get Started Now</span>
                 <ArrowRight size={20} />
-              </motion.button>
-              
-              <motion.button
-                className="border-2 border-cyan-400 text-cyan-400 px-8 py-4 rounded-full font-bold text-lg hover:bg-cyan-400 hover:text-black transition-all duration-300 flex items-center space-x-2"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Github size={20} />
-                <span>View on GitHub</span>
-              </motion.button>
+              </button>
             </div>
           </motion.div>
         </div>
@@ -540,9 +473,6 @@ const EinsteinLandingPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="col-span-1 md:col-span-2">
               <div className="flex items-center space-x-2 mb-4">
-                <div className="w-10 h-10 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-lg flex items-center justify-center">
-                  <span className="text-black font-bold text-xl">E</span>
-                </div>
                 <span className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
                   Einstein
                 </span>
@@ -551,48 +481,25 @@ const EinsteinLandingPage = () => {
                 Revolutionizing web3 gaming with zero-knowledge proofs. 
                 Building the future of verifiable, trustless gaming experiences.
               </p>
-              <div className="flex space-x-4">
-                <motion.a
-                  href="#"
-                  className="text-gray-400 hover:text-cyan-400 transition-colors"
-                  whileHover={{ scale: 1.1 }}
-                >
-                  <Twitter size={24} />
-                </motion.a>
-                <motion.a
-                  href="#"
-                  className="text-gray-400 hover:text-cyan-400 transition-colors"
-                  whileHover={{ scale: 1.1 }}
-                >
-                  <Github size={24} />
-                </motion.a>
-                <motion.a
-                  href="#"
-                  className="text-gray-400 hover:text-cyan-400 transition-colors"
-                  whileHover={{ scale: 1.1 }}
-                >
-                  <MessageCircle size={24} />
-                </motion.a>
-              </div>
             </div>
             
             <div>
               <h3 className="text-white font-semibold mb-4">Developers</h3>
               <ul className="space-y-2">
-                <li><a href="#" className="text-gray-400 hover:text-cyan-400 transition-colors">Documentation</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-cyan-400 transition-colors">API Reference</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-cyan-400 transition-colors">SDK</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-cyan-400 transition-colors">Examples</a></li>
+                <li><span className="text-gray-400">Documentation</span></li>
+                <li><span className="text-gray-400">API Reference</span></li>
+                <li><span className="text-gray-400">SDK</span></li>
+                <li><span className="text-gray-400">Examples</span></li>
               </ul>
             </div>
             
             <div>
               <h3 className="text-white font-semibold mb-4">Community</h3>
               <ul className="space-y-2">
-                <li><a href="#" className="text-gray-400 hover:text-cyan-400 transition-colors">Discord</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-cyan-400 transition-colors">Telegram</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-cyan-400 transition-colors">Twitter</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-cyan-400 transition-colors">Blog</a></li>
+                <li><span className="text-gray-400">Discord</span></li>
+                <li><span className="text-gray-400">Telegram</span></li>
+                <li><span className="text-gray-400">Twitter</span></li>
+                <li><span className="text-gray-400">Blog</span></li>
               </ul>
             </div>
           </div>
@@ -602,8 +509,8 @@ const EinsteinLandingPage = () => {
               © 2024 Einstein Protocol. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
-              <a href="#" className="text-gray-400 hover:text-cyan-400 text-sm transition-colors">Privacy Policy</a>
-              <a href="#" className="text-gray-400 hover:text-cyan-400 text-sm transition-colors">Terms of Service</a>
+              <span className="text-gray-400 hover:text-cyan-400 text-sm transition-colors">Privacy Policy</span>
+              <span className="text-gray-400 hover:text-cyan-400 text-sm transition-colors">Terms of Service</span>
             </div>
           </div>
         </div>
