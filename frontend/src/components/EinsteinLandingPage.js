@@ -44,8 +44,8 @@ const EinsteinLandingPage = () => {
     },
     {
       icon: Gamepad2,
-      title: 'Web3 Gaming Infrastructure',
-      description: 'Complete blockchain gaming stack with seamless integration for developers and players.'
+      title: 'AI Gaming Infrastructure',
+      description: 'Complete gaming stack with seamless integration for developers and players.'
     },
     {
       icon: Zap,
@@ -61,7 +61,7 @@ const EinsteinLandingPage = () => {
 
   const benefits = [
     {
-      category: 'For Game Developers',
+      category: 'Game Developers',
       items: [
         'Eliminate cheating and exploit concerns',
         'Build trust with transparent, verifiable outcomes',
@@ -70,7 +70,7 @@ const EinsteinLandingPage = () => {
       ]
     },
     {
-      category: 'For Players',
+      category: 'Players',
       items: [
         'Guaranteed fair play in every game',
         'Transparent and verifiable results',
@@ -93,7 +93,7 @@ const EinsteinLandingPage = () => {
     },
     {
       step: '03',
-      title: 'Blockchain Verification',
+      title: 'Trust Layer',
       description: 'Proofs are verified on-chain, ensuring tamper-proof and transparent results.',
     },
     {
@@ -211,7 +211,7 @@ const EinsteinLandingPage = () => {
             className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight"
           >
             <span className="bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-              Web3 Gaming
+              AI Gaming
             </span>
             <br />
             <span className="text-white">Reimagined</span>
@@ -488,7 +488,7 @@ const EinsteinLandingPage = () => {
                 </span>
               </div>
               <p className="text-gray-400 max-w-md leading-relaxed mb-6">
-                Revolutionizing web3 gaming with zero-knowledge proofs. 
+                Revolutionizing AI Gaming with zero-knowledge proofs. 
                 Building the future of verifiable, trustless gaming experiences.
               </p>
             </div>
