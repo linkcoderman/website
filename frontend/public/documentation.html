@@ -34,16 +34,33 @@
             display: block;
             padding: 0.75rem 1rem;
             border-radius: 0.375rem;
-            transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+            transition: all 0.3s ease;
             font-weight: 500;
             color: #e2e8f0;
+            position: relative;
+            overflow: hidden;
         }
         .nav-link:hover, .nav-link.active {
-            background-color: rgba(99, 102, 241, 0.1);
+            background: linear-gradient(90deg, rgba(99, 102, 241, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
             color: #6366f1;
+            transform: translateY(-1px);
         }
         .nav-link.active {
             font-weight: 600;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #6366f1, #a855f7);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            transform: scaleX(1);
         }
         .chart-container {
             position: relative;
@@ -53,6 +70,10 @@
             margin-right: auto;
             height: 300px;
             max-height: 400px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 1rem;
+            padding: 1rem;
+            backdrop-filter: blur(10px);
         }
         @media (min-width: 768px) {
             .chart-container {
@@ -73,13 +94,16 @@
             margin: 0.5rem;
             border-radius: 0.375rem;
             text-align: center;
-            background-color: rgba(99, 102, 241, 0.1);
+            background: linear-gradient(90deg, rgba(99, 102, 241, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
             cursor: pointer;
-            transition: background-color 0.2s;
+            transition: all 0.3s ease;
             color: #e2e8f0;
+            backdrop-filter: blur(10px);
         }
         .architecture-box:hover {
-            background-color: rgba(99, 102, 241, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(90deg, rgba(99, 102, 241, 0.2) 0%, rgba(168, 85, 247, 0.2) 100%);
         }
         .architecture-arrow {
             display: flex;
@@ -111,16 +135,18 @@
             background-color: rgba(0,0,0,0.8);
             align-items: center;
             justify-content: center;
+            backdrop-filter: blur(5px);
         }
         .modal-content {
-            background-color: #1a1c23;
+            background: linear-gradient(135deg, #1a1c23 0%, #2d3748 100%);
             margin: auto;
             padding: 2rem;
-            border-radius: 0.5rem;
+            border-radius: 1rem;
             width: 90%;
             max-width: 600px;
-            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.3);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
             color: #e2e8f0;
+            border: 1px solid rgba(99, 102, 241, 0.2);
         }
         .modal-close {
             color: #6366f1;
@@ -128,6 +154,7 @@
             font-size: 28px;
             font-weight: bold;
             cursor: pointer;
+            transition: color 0.3s ease;
         }
         .modal-close:hover,
         .modal-close:focus {
@@ -135,8 +162,11 @@
             text-decoration: none;
         }
         .bg-pattern {
-            background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0);
-            background-size: 20px 20px;
+            background-image: 
+                radial-gradient(circle at 1px 1px, rgba(99, 102, 241, 0.1) 1px, transparent 0),
+                radial-gradient(circle at 1px 1px, rgba(168, 85, 247, 0.1) 1px, transparent 0);
+            background-size: 20px 20px, 40px 40px;
+            background-position: 0 0, 10px 10px;
         }
         .navigation-button {
             border: 2px solid #6366f1;
@@ -147,22 +177,27 @@
             min-width: 280px;
             text-align: center;
             font-size: 1.1rem;
-            background-color: rgba(99, 102, 241, 0.1);
+            background: linear-gradient(90deg, rgba(99, 102, 241, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
             color: #e2e8f0;
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
         }
         .navigation-button:hover {
-            transform: scale(1.05);
-            background-color: rgba(99, 102, 241, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(90deg, rgba(99, 102, 241, 0.2) 0%, rgba(168, 85, 247, 0.2) 100%);
         }
         .navigation-button:disabled {
             opacity: 0.5;
             cursor: not-allowed;
             transform: none;
-            background-color: rgba(99, 102, 241, 0.05);
+            background: rgba(99, 102, 241, 0.05);
         }
         .bg-white {
-            background-color: #1a1c23 !important;
+            background: linear-gradient(135deg, #1a1c23 0%, #2d3748 100%) !important;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            backdrop-filter: blur(10px);
         }
         .text-slate-600 {
             color: #e2e8f0 !important;
@@ -171,19 +206,26 @@
             color: #e2e8f0 !important;
         }
         .bg-slate-50 {
-            background-color: rgba(99, 102, 241, 0.1) !important;
+            background: linear-gradient(90deg, rgba(99, 102, 241, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%) !important;
         }
         .border-slate-200 {
-            border-color: #2d3748 !important;
+            border-color: rgba(99, 102, 241, 0.2) !important;
         }
         .bg-slate-100 {
-            background-color: #2d3748 !important;
+            background: linear-gradient(90deg, rgba(99, 102, 241, 0.15) 0%, rgba(168, 85, 247, 0.15) 100%) !important;
         }
         .text-slate-500 {
             color: #a0aec0 !important;
         }
         .divide-slate-200 {
-            border-color: #2d3748 !important;
+            border-color: rgba(99, 102, 241, 0.2) !important;
+        }
+        .glossary-item {
+            transition: all 0.3s ease;
+        }
+        .glossary-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
     </style>
 </head>
@@ -192,8 +234,15 @@
     <header class="lg:hidden sticky top-0 bg-white shadow-md z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
-                <div class="flex items-center">
-                    <h1 class="text-2xl font-bold text-sky-700"><a href="https://einsteinprotocol.com">Einstein</a></h1>
+                <div class="flex items-center space-x-3">
+                    <div class="h-8 w-8 rounded-full overflow-hidden bg-gradient-to-r from-indigo-500 to-purple-500 flex items-center justify-center">
+                        <img 
+                            src="/einstein-logo.png" 
+                            alt="Einstein Logo" 
+                            class="h-full w-full object-cover"
+                        >
+                    </div>
+                    <h1 class="text-2xl font-bold gradient-text"><a href="https://einsteinprotocol.com">Einstein</a></h1>
                 </div>
                 <div class="flex items-center">
                     <button id="mobileMenuButton" class="inline-flex items-center justify-center p-2 rounded-md text-slate-400 hover:text-sky-600 hover:bg-sky-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-sky-500">
@@ -207,20 +256,29 @@
         </div>
         <nav id="mobileMenu" class="hidden lg:hidden border-t border-slate-200">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                </div>
+            </div>
         </nav>
     </header>
 
     <div class="flex min-h-screen">
         <aside id="desktopSidebar" class="hidden lg:block w-64 bg-gray-900 shadow-lg p-4 space-y-2 sticky top-0 h-screen overflow-y-auto">
-            <h1 class="text-2xl font-bold gradient-text mb-6 px-2"><a href="https://einsteinprotocol.com">Einstein</a></h1>
-            </aside>
+            <div class="flex items-center space-x-3 mb-6 px-2">
+                <div class="h-8 w-8 rounded-full overflow-hidden bg-gradient-to-r from-indigo-500 to-purple-500 flex items-center justify-center">
+                    <img 
+                        src="/einstein-logo.png" 
+                        alt="Einstein Logo" 
+                        class="h-full w-full object-cover"
+                    >
+                </div>
+                <h1 class="text-2xl font-bold gradient-text"><a href="https://einsteinprotocol.com">Einstein</a></h1>
+            </div>
+        </aside>
 
         <main class="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto">
             <div id="contentArea" class="max-w-4xl mx-auto">
                 <section id="overview" class="content-section space-y-6">
                     <h2 class="text-3xl font-bold mb-4">Protocol Overview</h2>
-                    <p class="text-lg leading-relaxed">This interactive explorer provides a comprehensive overview of Einstein, a novel protocol for verifiable fairness in Web3 gaming. Navigate through the sections to understand its core concepts, architecture, benefits, and technical details.</p>
+                    <p class="text-lg leading-relaxed">This interactive explorer provides a comprehensive overview of Einstein, a novel protocol for verifiable fairness in AI Gaming. Navigate through the sections to understand its core concepts, architecture, benefits, and technical details.</p>
                     
                     <div class="bg-white p-6 rounded-lg shadow">
                         <h3 class="text-2xl font-semibold mb-3">Introduction</h3>
@@ -229,7 +287,7 @@
                     </div>
                     <!--<div class="bg-white p-6 rounded-lg shadow">
                         <h3 class="text-2xl font-semibold mb-3">Keywords</h3>
-                        <p class="text-slate-600">Zero-Knowledge Proofs, ZK-JS, Solana, Web3 Gaming, hyper-casual Games, Verifiable Computation, Client-Side Execution, Provable Fairness.</p>
+                        <p class="text-slate-600">Zero-Knowledge Proofs, ZK-JS, Solana, AI Gaming, hyper-casual Games, Verifiable Computation, Client-Side Execution, Provable Fairness.</p>
                     </div>-->
                 </section>
 
@@ -238,7 +296,7 @@
                     <p class="text-lg leading-relaxed">AI-generated games aim to revolutionize player ownership and creator economies, but establishing trust, and eliminating bot activity, is a major hurdle. This section outlines the key issues Einstein seeks to solve.</p>
                     <div class="bg-white p-6 rounded-lg shadow">
                         <h3 class="text-2xl font-semibold mb-3">The Demand for Verifiable Trust</h3>
-                        <p class="text-slate-600 leading-relaxed">As blockchain gaming evolves, the expectation for transparency and fairness in game mechanics intensifies. A core challenge is establishing trust when critical game logic resides on client devices or opaque centralized servers. The decentralized ethos of Web3 demands robust, verifiable mechanisms to ensure integrity, addressing the current trust deficit in blockchain gaming.</p>
+                        <p class="text-slate-600 leading-relaxed">As blockchain gaming evolves, the expectation for transparency and fairness in game mechanics intensifies. A core challenge is establishing trust when critical game logic resides on client devices or opaque centralized servers. The decentralized ethos of AI Gaming demands robust, verifiable mechanisms to ensure integrity, addressing the current trust deficit in blockchain gaming.</p>
                     </div>
                     <div class="bg-white p-6 rounded-lg shadow">
                         <h3 class="text-2xl font-semibold mb-3">Current Hurdles</h3>
@@ -380,7 +438,7 @@ Millions have game ideas but lack coding skills or resources.</li>
 
                 <section id="architecture" class="content-section space-y-6">
                     <h2 class="text-3xl font-bold mb-4">Architecture</h2>
-                    <p class="text-lg leading-relaxed">The Einstein protocol is designed as a foundational layer for Web3 gaming. This section details its overall architecture, key components, and how ecosystem participants interact.</p>
+                    <p class="text-lg leading-relaxed">The Einstein protocol is designed as a foundational layer for AI Gaming. This section details its overall architecture, key components, and how ecosystem participants interact.</p>
                     
                     <div class="bg-white p-6 rounded-lg shadow">
                         <h3 class="text-2xl font-semibold mb-3">High-Level Architectural Diagram</h3>
@@ -576,7 +634,7 @@ Millions have game ideas but lack coding skills or resources.</li>
 
                 <section id="benefits" class="content-section space-y-6">
                     <h2 class="text-3xl font-bold mb-4">Benefits and Features</h2>
-                    <p class="text-lg leading-relaxed">The Einstein protocol offers significant advantages for the Web3 gaming ecosystem by addressing key challenges.</p>
+                    <p class="text-lg leading-relaxed">The Einstein protocol offers significant advantages for the AI Gaming ecosystem by addressing key challenges.</p>
                     <div class="grid md:grid-cols-2 gap-6">
                         <div class="bg-white p-6 rounded-lg shadow">
                             <h3 class="text-xl font-semibold text-sky-600 mb-2">💎 Provably Fair Games</h3>
@@ -595,7 +653,7 @@ Millions have game ideas but lack coding skills or resources.</li>
                             <p class="text-slate-600 leading-relaxed">Core game logic executes client-side for responsiveness. ZKP generation is post-session or minimally intrusive, avoiding on-chain performance bottlenecks.</p>
                         </div>--!>
                         <div class="bg-white p-6 rounded-lg shadow">
-                            <h3 class="text-xl font-semibold text-sky-600 mb-2">🌍 Web3 Creator Economy</h3>
+                            <h3 class="text-xl font-semibold text-sky-600 mb-2">🌍 AI Gaming Creator Economy</h3>
                             <p class="text-slate-600 leading-relaxed">Developers and creators can effortlessly create millions of AI-generated games, share them instantly, and monetize their creation..</p>
                         </div>
                          <div class="bg-white p-6 rounded-lg shadow md:col-span-2">
@@ -665,7 +723,7 @@ Millions have game ideas but lack coding skills or resources.</li>
                             <span class="accordion-icon transform transition-transform duration-300">&#9660;</span>
                         </h3>
                         <div class="accordion-content mt-2 space-y-3">
-                             <p class="text-slate-600 leading-relaxed">Client-side security (browser, OS) is a broader Web3 concern. Malware could steal keys or manipulate inputs pre-ZK-JS.</p>
+                             <p class="text-slate-600 leading-relaxed">Client-side security (browser, OS) is a broader AI Gaming concern. Malware could steal keys or manipulate inputs pre-ZK-JS.</p>
                              <p class="text-slate-600 leading-relaxed mt-2">Auditing ZK-based systems, especially with a novel JS-to-circuit layer, is complex and requires specialized expertise in JS internals, ZKP circuit design, cryptography, and Solana security. A multi-faceted auditing strategy is recommended.</p>
                         </div>
                     </div>
@@ -676,7 +734,7 @@ Millions have game ideas but lack coding skills or resources.</li>
                     <p class="text-lg leading-relaxed">The Einstein protocol and its ZK-JS framework are primarily targeted at AI-generated games but have potential for broader applications in verifiable off-chain computation.</p>
                     <div class="bg-white p-6 rounded-lg shadow">
                         <h3 class="text-2xl font-semibold mb-3">AI-Powered Marketplace</h3>
-                        <p class="text-slate-600 leading-relaxed">A "Roblox of Web3" enables creators to design games quickly and efficiently with LLMs reducing development cycles from months to minutes. 
+                        <p class="text-slate-600 leading-relaxed">A "Roblox of AI Gaming" enables creators to design games quickly and efficiently with LLMs reducing development cycles from months to minutes. 
 </p>
                         <p class="text-slate-600 leading-relaxed mt-2"><strong>Impact:</strong> Einstein protocol is the backbone infrastructure. When a game's critical AI-generated JavaScript components are verified by Einstein, associated game tokens benefit from this trust layer, with their utility and interactions underpinned by Einstein's attestations on the underlying code.</p>
                     </div>
@@ -795,7 +853,7 @@ Millions have game ideas but lack coding skills or resources.</li>
     <div id="componentModal" class="modal">
         <div class="modal-content">
             <span class="modal-close" onclick="closeModal()">&times;</span>
-            <h3 id="modalTitle" class="text-2xl font-semibold text-sky-700 mb-3">Component Detail</h3>
+            <h3 id="modalTitle" class="text-2xl font-semibold gradient-text mb-3">Component Detail</h3>
             <p id="modalDescription" class="text-slate-600 leading-relaxed"></p>
         </div>
     </div>
