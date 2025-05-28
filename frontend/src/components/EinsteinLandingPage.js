@@ -504,9 +504,9 @@ const EinsteinLandingPage = () => {
             <div>
               <h3 className="text-white font-semibold mb-4">Community</h3>
               <ul className="space-y-2">
-                <li><span className="text-gray-400">Discord</span></li>
-                <li><span className="text-gray-400">Telegram</span></li>
-                <li><span className="text-gray-400">Twitter</span></li>
+                <li><a href="https://discord.gg/euFxrH4DPY" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-cyan-400 transition-colors duration-300">Discord</a></li>
+                <li><a href="https://t.me/zkEinstein" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-cyan-400 transition-colors duration-300">Telegram</a></li>
+                <li><a href="https://x.com/zkEinstein" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-cyan-400 transition-colors duration-300">Twitter</a></li>
               </ul>
             </div>
           </div>
