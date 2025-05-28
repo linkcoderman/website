@@ -246,7 +246,9 @@ const EinsteinLandingPage = () => {
             <button
               className="border-2 border-cyan-400 text-cyan-400 px-8 py-4 rounded-full font-bold text-lg hover:bg-cyan-400 hover:text-black transition-all duration-300"
             >
-              View Documentation
+              <a href="/documentation.html" className="flex items-center space-x-2">
+                <span>View Documentation</span>
+              </a>
             </button>
           </motion.div>
 
@@ -494,7 +496,7 @@ const EinsteinLandingPage = () => {
             <div>
               <h3 className="text-white font-semibold mb-4">Developers</h3>
               <ul className="space-y-2">
-                <li><span className="text-gray-400">Documentation</span></li>
+                <li><a href="/documentation.html" className="text-gray-400 hover:text-cyan-400 transition-colors duration-300">Documentation</a></li>
                 <li><span className="text-gray-400">API Reference</span></li>
                 <li><span className="text-gray-400">SDK</span></li>
                 <li><span className="text-gray-400">Examples</span></li>
