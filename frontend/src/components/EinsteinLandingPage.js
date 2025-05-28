@@ -120,12 +120,13 @@ const EinsteinLandingPage = () => {
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
               {navItems.map((item) => (
-                <span
+                <a
                   key={item.name}
-                  className="text-gray-300 hover:text-cyan-400 transition-colors duration-300 cursor-pointer"
+                  href={item.href}
+                  className="text-gray-300 hover:text-cyan-400 transition-colors duration-300"
                 >
                   {item.name}
-                </span>
+                </a>
               ))}
               <button
                 className="bg-gradient-to-r from-cyan-500 to-purple-600 px-6 py-2 rounded-full font-semibold hover:shadow-lg hover:shadow-cyan-500/25 transition-all duration-300"
@@ -152,13 +153,14 @@ const EinsteinLandingPage = () => {
               className="md:hidden border-t border-gray-700 py-4"
             >
               {navItems.map((item) => (
-                <span
+                <a
                   key={item.name}
-                  className="block py-2 text-gray-300 hover:text-cyan-400 transition-colors cursor-pointer"
+                  href={item.href}
+                  className="block py-2 text-gray-300 hover:text-cyan-400 transition-colors"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}
-                </span>
+                </a>
               ))}
               <button className="w-full mt-4 bg-gradient-to-r from-cyan-500 to-purple-600 px-6 py-2 rounded-full font-semibold">
                 Get Started
