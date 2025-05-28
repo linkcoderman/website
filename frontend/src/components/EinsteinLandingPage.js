@@ -133,7 +133,7 @@ const EinsteinLandingPage = () => {
               <button
                 className="bg-gradient-to-r from-cyan-500 to-purple-600 px-6 py-2 rounded-full font-semibold hover:shadow-lg hover:shadow-cyan-500/25 transition-all duration-300"
               >
-                <a href="https://ghostnite.com" target="_blank" rel="noopener noreferrer">Experience Einstein</a>
+                <a href="https://ghostnite.com" target="_blank" rel="noopener noreferrer">Experience</a>
               </button>
             </div>
 
@@ -165,7 +165,7 @@ const EinsteinLandingPage = () => {
                 </a>
               ))}
               <button className="w-full mt-4 bg-gradient-to-r from-cyan-500 to-purple-600 px-6 py-2 rounded-full font-semibold">
-                <a href="https://ghostnite.com" target="_blank" rel="noopener noreferrer">Experience Einstein</a>
+                <a href="https://ghostnite.com" target="_blank" rel="noopener noreferrer">Experience</a>
               </button>
             </motion.div>
           )}
@@ -238,7 +238,7 @@ const EinsteinLandingPage = () => {
               className="bg-gradient-to-r from-cyan-500 to-purple-600 px-8 py-4 rounded-full font-bold text-lg flex items-center space-x-2 hover:shadow-xl hover:shadow-cyan-500/25 transition-all duration-300"
             >
               <a href="https://ghostnite.com" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2">
-                <span>Experience Einstein</span>
+                <span>Experience</span>
                 <ArrowRight size={20} />
               </a>
             </button>
@@ -468,7 +468,7 @@ const EinsteinLandingPage = () => {
                 className="bg-gradient-to-r from-cyan-500 to-purple-600 px-8 py-4 rounded-full font-bold text-lg flex items-center space-x-2 hover:shadow-xl hover:shadow-cyan-500/25 transition-all duration-300"
               >
                 <a href="https://ghostnite.com" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2">
-                  <span>Experience Einstein</span>
+                  <span>Experience</span>
                   <ArrowRight size={20} />
                 </a>
               </button>
@@ -497,8 +497,6 @@ const EinsteinLandingPage = () => {
               <h3 className="text-white font-semibold mb-4">Developers</h3>
               <ul className="space-y-2">
                 <li><a href="/documentation.html" className="text-gray-400 hover:text-cyan-400 transition-colors duration-300">Documentation</a></li>
-                <li><span className="text-gray-400">API Reference</span></li>
-                <li><span className="text-gray-400">SDK</span></li>
                 <li><span className="text-gray-400">Examples</span></li>
               </ul>
             </div>
@@ -509,19 +507,14 @@ const EinsteinLandingPage = () => {
                 <li><span className="text-gray-400">Discord</span></li>
                 <li><span className="text-gray-400">Telegram</span></li>
                 <li><span className="text-gray-400">Twitter</span></li>
-                <li><span className="text-gray-400">Blog</span></li>
               </ul>
             </div>
           </div>
           
           <div className="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm">
-              © 2024 Einstein Protocol. All rights reserved.
+              © 2025 Ockams Inc. All rights reserved.
             </p>
-            <div className="flex space-x-6 mt-4 md:mt-0">
-              <span className="text-gray-400 hover:text-cyan-400 text-sm transition-colors">Privacy Policy</span>
-              <span className="text-gray-400 hover:text-cyan-400 text-sm transition-colors">Terms of Service</span>
-            </div>
           </div>
         </div>
       </footer>
