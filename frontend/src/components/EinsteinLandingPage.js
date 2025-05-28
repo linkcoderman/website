@@ -113,9 +113,11 @@ const EinsteinLandingPage = () => {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
-            <span className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
-              Einstein
-            </span>
+            <div className="flex items-center space-x-2">
+              <span className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
+                Einstein
+              </span>
+            </div>
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
