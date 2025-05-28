@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Einstein Protocol</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧠</text></svg>">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #080A0F;
+            color: #e2e8f0;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        .gradient-primary {
+            background: linear-gradient(90deg, #6366f1 0%, #a855f7 100%);
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #6366f1, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .content-section {
+            display: none;
+        }
+        .content-section.active {
+            display: block;
+        }
+        .nav-link {
+            display: block;
+            padding: 0.75rem 1rem;
+            border-radius: 0.375rem;
+            transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+            font-weight: 500;
+            color: #e2e8f0;
+        }
+        .nav-link:hover, .nav-link.active {
+            background-color: rgba(99, 102, 241, 0.1);
+            color: #6366f1;
+        }
+        .nav-link.active {
+            font-weight: 600;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        h1, h2, h3 {
+            color: #e2e8f0;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .architecture-box {
+            border: 2px solid #6366f1;
+            padding: 1rem;
+            margin: 0.5rem;
+            border-radius: 0.375rem;
+            text-align: center;
+            background-color: rgba(99, 102, 241, 0.1);
+            cursor: pointer;
+            transition: background-color 0.2s;
+            color: #e2e8f0;
+        }
+        .architecture-box:hover {
+            background-color: rgba(99, 102, 241, 0.2);
+        }
+        .architecture-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #6366f1;
+            margin: 0.25rem 0;
+        }
+        .tab-button.active {
+            background: linear-gradient(90deg, #6366f1 0%, #a855f7 100%);
+            color: white;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.8);
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background-color: #1a1c23;
+            margin: auto;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.3);
+            color: #e2e8f0;
+        }
+        .modal-close {
+            color: #6366f1;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .modal-close:hover,
+        .modal-close:focus {
+            color: #a855f7;
+            text-decoration: none;
+        }
+        .bg-pattern {
+            background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0);
+            background-size: 20px 20px;
+        }
+        .navigation-button {
+            border: 2px solid #6366f1;
+            padding: 1rem 2rem;
+            border-radius: 0.375rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            min-width: 280px;
+            text-align: center;
+            font-size: 1.1rem;
+            background-color: rgba(99, 102, 241, 0.1);
+            color: #e2e8f0;
+            cursor: pointer;
+        }
+        .navigation-button:hover {
+            transform: scale(1.05);
+            background-color: rgba(99, 102, 241, 0.2);
+        }
+        .navigation-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+            background-color: rgba(99, 102, 241, 0.05);
+        }
+        .bg-white {
+            background-color: #1a1c23 !important;
+        }
+        .text-slate-600 {
+            color: #e2e8f0 !important;
+        }
+        .text-slate-700 {
+            color: #e2e8f0 !important;
+        }
+        .bg-slate-50 {
+            background-color: rgba(99, 102, 241, 0.1) !important;
+        }
+        .border-slate-200 {
+            border-color: #2d3748 !important;
+        }
+        .bg-slate-100 {
+            background-color: #2d3748 !important;
+        }
+        .text-slate-500 {
+            color: #a0aec0 !important;
+        }
+        .divide-slate-200 {
+            border-color: #2d3748 !important;
+        }
+    </style>
+</head>
+<body class="antialiased bg-pattern">
+
+    <header class="lg:hidden sticky top-0 bg-white shadow-md z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-bold text-sky-700"><a href="https://einsteinprotocol.com">Einstein</a></h1>
+                </div>
+                <div class="flex items-center">
+                    <button id="mobileMenuButton" class="inline-flex items-center justify-center p-2 rounded-md text-slate-400 hover:text-sky-600 hover:bg-sky-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-sky-500">
+                        <span class="sr-only">Open main menu</span>
+                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <nav id="mobileMenu" class="hidden lg:hidden border-t border-slate-200">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                </div>
+        </nav>
+    </header>
+
+    <div class="flex min-h-screen">
+        <aside id="desktopSidebar" class="hidden lg:block w-64 bg-gray-900 shadow-lg p-4 space-y-2 sticky top-0 h-screen overflow-y-auto">
+            <h1 class="text-2xl font-bold gradient-text mb-6 px-2"><a href="https://einsteinprotocol.com">Einstein</a></h1>
+            </aside>
+
+        <main class="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto">
+            <div id="contentArea" class="max-w-4xl mx-auto">
+                <section id="overview" class="content-section space-y-6">
+                    <h2 class="text-3xl font-bold mb-4">Protocol Overview</h2>
+                    <p class="text-lg leading-relaxed">This interactive explorer provides a comprehensive overview of Einstein, a novel protocol for verifiable fairness in Web3 gaming. Navigate through the sections to understand its core concepts, architecture, benefits, and technical details.</p>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-2xl font-semibold mb-3">Introduction</h3>
+                        <p class="text-slate-600 leading-relaxed">The burgeoning field of blockchain gaming promises unprecedented player ownership and decentralized economies, yet faces a critical challenge in establishing verifiable trust, particularly for games where logic often executes on centeralized servers. This document introduces the Einstein protocol, a novel solution engineered to address this deficit. Einstein leverages a core "ZK-JS" framework, enabling the verifiable execution of client-side JavaScript game logic. Players generate Zero-Knowledge Proofs (ZKPs) of their game sessions, which are subsequently verified by smart contracts on the blockchain. This mechanism ensures provably fair game outcomes, facilitates confident and automated player compensation, maintains the performance characteristics essential for casual gaming, and preserves player privacy by not revealing underlying strategies. <br><br>Einstein establishes a universal trust layer for AI-generated gaming experiences. It combines a no-code AI game generation engine with a robust ZK verification framework, enabling users to create and participate in games with mathematically verifiable integrity. Initially focusing on high-stakes "winner-takes-all" scenarios like jackpots, the protocols aims to democratize game creation, eliminate trust issues through cryptographic certainty, and foster a new, transparent creator economy. 
+</p>
+                    </div>
+                    <!--<div class="bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-2xl font-semibold mb-3">Keywords</h3>
+                        <p class="text-slate-600">Zero-Knowledge Proofs, ZK-JS, Solana, Web3 Gaming, hyper-casual Games, Verifiable Computation, Client-Side Execution, Provable Fairness.</p>
+                    </div>-->
+                </section>
+
+                <section id="challenge" class="content-section space-y-6">
+                    <h2 class="text-3xl font-bold mb-4">The Problem</h2>
+                    <p class="text-lg leading-relaxed">AI-generated games aim to revolutionize player ownership and creator economies, but establishing trust, and eliminating bot activity, is a major hurdle. This section outlines the key issues Einstein seeks to solve.</p>
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-2xl font-semibold mb-3">The Demand for Verifiable Trust</h3>
+                        <p class="text-slate-600 leading-relaxed">As blockchain gaming evolves, the expectation for transparency and fairness in game mechanics intensifies. A core challenge is establishing trust when critical game logic resides on client devices or opaque centralized servers. The decentralized ethos of Web3 demands robust, verifiable mechanisms to ensure integrity, addressing the current trust deficit in blockchain gaming.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-2xl font-semibold mb-3">Current Hurdles</h3>
+                        <ul class="list-disc list-inside space-y-2 text-slate-600 leading-relaxed">
+                            <li><strong>Fairness:</strong> Client-side game logic without verification is susceptible to manipulation, leading to unfair advantages and disputes.</li>
+                            <li><strong>Sybil Attacks:</strong> Bot farms erode player trust. Attempting full on-chain logic for transparency introduces severe performance overhead (latency, high costs), making many games nearly unplayable.</li>
+                            <li><strong>Game Development:</strong> It is complex, slow, and expensive.
+Millions have game ideas but lack coding skills or resources.</li>
+                        </ul>
+                        <p class="mt-4 text-slate-600 leading-relaxed"><!--These challenges hinder the promise of fair, player-centric gaming, impacting player experience and platform viability.--!></p>
+                    </div>
+                </section>
+
+                <section id="introducing-einstein" class="content-section space-y-6">
+                    <h2 class="text-3xl font-bold mb-4">Introducing Einstein</h2>
+                     <p class="text-lg leading-relaxed">The Einstein protocol offers a solution to the challenges of fairness, transparency, and development through its innovative ZK-JS framework.</p>
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-2xl font-semibold mb-3">Provably Fair Games</h3>
+                        <p class="text-slate-600 leading-relaxed">Players generate cryptographic Zero-Knowledge Proofs (ZKPs) attesting to their game session outcomes. These proofs are then efficiently verified by smart contracts on the blockchain.</p>
+                        <h4 class="text-xl font-semibold mt-4 mb-2">Value Propositions:</h4>
+                        <ul class="list-disc list-inside space-y-2 text-slate-600 leading-relaxed">
+                            <li>Delivers provable fairness.</li>
+                            <li>Maintains performance for engaging gameplay.</li>
+                            <li>Protects player strategies and diminishes bot effectiveness at scale.</li>
+                            <li>Shifts trust from developers to immutable cryptographic proofs.</li>
+                        </ul>
+                        <p class="mt-4 text-slate-600 leading-relaxed">Einstein aims to foster a new era of transparency and integrity, fundamentally altering player expectations and developer responsibilities in the gaming ecosystem.</p>
+                    </div>
+                </section>
+
+                <section id="core-concepts" class="content-section space-y-6">
+                    <h2 class="text-3xl font-bold mb-4">Zero-Knowledge Proofs (ZKPs)</h2>
+                    <p class="text-lg leading-relaxed">Zero-Knowledge Proofs are the cryptographic foundation of the Einstein protocol. This section delves into their fundamental properties, types, and the primary schemes relevant to the protocol: zk-SNARKs and zk-STARKs.</p>
+
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-2xl font-semibold mb-3 accordion-trigger cursor-pointer flex justify-between items-center">
+                            <span>Fundamentals of ZKPs</span>
+                            <span class="accordion-icon transform transition-transform duration-300">&#9660;</span>
+                        </h3>
+                        <div class="accordion-content mt-2 space-y-3">
+                            <p class="text-slate-600 leading-relaxed"><strong>Definition:</strong> ZKPs allow a *prover* to convince a *verifier* that a statement is true, without revealing any information beyond the statement's validity.
+                            <br><strong>Analogy (Alibaba's Cave):</strong> Peggy proves to Victor she knows a secret word to open a magic door in a cave by always emerging from the path Victor chooses, without ever revealing the word itself. ZKPs similarly prove knowledge or computation without exposing underlying secrets.</p>
+                            
+                            <h4 class="text-xl font-semibold mt-3 mb-1">Core Properties:</h4>
+                            <ul class="list-none space-y-2">
+                                <li class="p-3 bg-slate-50 rounded-md">
+                                    <strong class="text-sky-600">Completeness:</strong> If a statement is true and the prover is honest, an honest verifier will be convinced. (A legitimate player can always generate a valid proof).
+                                </li>
+                                <li class="p-3 bg-slate-50 rounded-md">
+                                    <strong class="text-sky-600">Soundness:</strong> If a statement is false, no cheating prover can convince an honest verifier (except with negligible probability). (A cheating player cannot generate a valid proof).
+                                </li>
+                                <li class="p-3 bg-slate-50 rounded-md">
+                                    <strong class="text-sky-600">Zero-Knowledge:</strong> The verifier learns nothing beyond the statement's truth. (Player strategies and game logic details are not revealed, only the public outcome).
+                                </li>
+                            </ul>
+                             <h4 class="text-xl font-semibold mt-3 mb-1">Types of ZKPs:</h4>
+                             <ul class="list-none space-y-2">
+                                <li class="p-3 bg-slate-50 rounded-md">
+                                    <strong class="text-sky-600">Interactive ZKPs:</strong> Require multiple rounds of communication. Less suitable for blockchains.
+                                </li>
+                                <li class="p-3 bg-slate-50 rounded-md">
+                                    <strong class="text-sky-600">Non-Interactive ZKPs (NIZKs):</strong> A single proof string for verification. Essential for systems like Einstein for smart contract verification.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-2xl font-semibold mb-3">ZKP Schemes: zk-SNARKs vs zk-STARKs</h3>
+                        <p class="text-slate-600 leading-relaxed mb-4">Two prominent NIZK schemes are zk-SNARKs and zk-STARKs, each with distinct characteristics. The table below, adapted from the whitepaper, compares them.</p>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-slate-200 border border-slate-200 rounded-lg">
+                                <thead class="bg-slate-100">
+                                    <tr>
+                                        <th class="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Feature</th>
+                                        <th class="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">zk-SNARK (Groth16)</th>
+                                        <th class="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">zk-SNARK (PLONK)</th>
+                                        <th class="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">zk-STARK</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-slate-200 text-sm text-slate-600">
+                                    <tr>
+                                        <td class="px-4 py-3 font-medium">Proof Size</td>
+                                        <td class="px-4 py-3">Very Small (~128-260 bytes)</td>
+                                        <td class="px-4 py-3">Small (larger than Groth16)</td>
+                                        <td class="px-4 py-3">Larger (tens to hundreds of KBs)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3 font-medium">Verification Cost (Solana)</td>
+                                        <td class="px-4 py-3">Low (fast, few pairings)</td>
+                                        <td class="px-4 py-3">Low to Medium</td>
+                                        <td class="px-4 py-3">Medium to High</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3 font-medium">Client-Side Proving Time</td>
+                                        <td class="px-4 py-3">Moderate to High</td>
+                                        <td class="px-4 py-3">Moderate to High</td>
+                                        <td class="px-4 py-3">Potentially faster for large computations, generally complex</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3 font-medium">Trusted Setup</td>
+                                        <td class="px-4 py-3">Required (per-circuit)</td>
+                                        <td class="px-4 py-3">Required (universal & updatable)</td>
+                                        <td class="px-4 py-3">Not Required (Transparent)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3 font-medium">Quantum Resistance</td>
+                                        <td class="px-4 py-3">No (ECC-based)</td>
+                                        <td class="px-4 py-3">No (ECC-based)</td>
+                                        <td class="px-4 py-3">Yes (Hash-based)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3 font-medium">JS/WASM Library Maturity</td>
+                                        <td class="px-4 py-3">High (snarkjs, websnark)</td>
+                                        <td class="px-4 py-3">Moderate (snarkjs supports PLONK)</td>
+                                        <td class="px-4 py-3">Lower for client-side</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                         <p class="mt-4 text-slate-600 leading-relaxed"><strong>Einstein's Choice:</strong> For its initial implementation, Einstein favors zk-SNARKs (Groth16 or PLONK-like) due to their small proof sizes, low verification costs on Solana, and mature client-side libraries, despite the trusted setup requirement.</p>
+                    </div>
+                     <div class="bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-2xl font-semibold mb-3 accordion-trigger cursor-pointer flex justify-between items-center">
+                            <span>Challenge of Verifying Client-Side Game Logic</span>
+                            <span class="accordion-icon transform transition-transform duration-300">&#9660;</span>
+                        </h3>
+                        <div class="accordion-content mt-2 space-y-3">
+                            <p class="text-slate-600 leading-relaxed">Verifying arbitrary client-side game logic (especially JavaScript) with ZKPs is challenging because:</p>
+                            <ul class="list-disc list-inside space-y-2 text-slate-600 leading-relaxed">
+                                <li>ZKPs operate on mathematical constraint systems (e.g., R1CS). Translating dynamic JS semantics to this form is complex.</li>
+                                <li>JavaScript has non-deterministic features (`Math.random()`, `Date.now()`, DOM interactions). ZKPs require deterministic computation.</li>
+                                <li>The ZK-JS framework must ensure determinism by restricting JS subsets, providing deterministic API replacements, or sandboxing.</li>
+                                <li>The verifier only checks the proof, not re-executing the game. The correctness of the JS-to-circuit translation is critical.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="architecture" class="content-section space-y-6">
+                    <h2 class="text-3xl font-bold mb-4">Architecture</h2>
+                    <p class="text-lg leading-relaxed">The Einstein protocol is designed as a foundational layer for Web3 gaming. This section details its overall architecture, key components, and how ecosystem participants interact.</p>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-2xl font-semibold mb-3">High-Level Architectural Diagram</h3>
+                        <p class="text-slate-600 leading-relaxed mb-4">The diagram below illustrates the flow of information and interactions within the Einstein protocol. Click on a component to learn more about its role.</p>
+                        <div class="border border-slate-200 p-4 rounded-lg">
+                            <div class="flex flex-col items-center">
+                                <div id="player-browser-box" class="architecture-box w-full md:w-3/4 lg:w-1/2" data-title="Player's Browser (JS Game Engine)" data-description="The player's environment where the JavaScript-based hyper-casual game runs. It captures player inputs and game session data.">Player's Browser (JS Game Engine)</div>
+                                <div class="architecture-arrow">&#11015; <span class="text-sm ml-2">Game Logic (JS), Player Inputs</span></div>
+                                <div id="zkjs-framework-box" class="architecture-box w-full md:w-3/4 lg:w-1/2" data-title="ZK-JS Framework (Client-Side Prover)" data-description="The client-side engine that takes deterministic JS game logic and player session data to generate a Zero-Knowledge Proof of the game session's correct execution.">ZK-JS Framework (Client-Side Prover)</div>
+                                <div class="flex flex-col md:flex-row justify-around w-full items-center">
+                                    <div class="flex flex-col items-center md:w-1/2">
+                                        <div class="architecture-arrow self-start md:self-center ml-0 md:ml-auto">&#11015; <span class="text-sm ml-2">Cryptographic Proof</span></div>
+                                        <div id="proof-box" class="architecture-box w-full" data-title="Player-Generated Proof" data-description="The compact cryptographic artifact produced by the ZK-JS framework. It mathematically demonstrates the game session's validity without revealing private inputs or the full execution trace.">Player-Generated Proof</div>
+                                    </div>
+                                    <div class="hidden md:block architecture-arrow mx-4">&#10231;</div>
+                                    <div class="flex flex-col items-center md:w-1/2 mt-4 md:mt-0">
+                                         <div id="dev-server-box" class="architecture-box w-full" data-title="Game Developer's Server (Optional)" data-description="May serve game assets. Not involved in trusted logic execution for ZK-proven games.">Game Developer's Server (Optional)</div>
+                                         <div class="architecture-arrow self-end md:self-center mr-0 md:mr-auto transform rotate-180 md:rotate-0">&#11015; <span class="text-sm ml-2">Game Assets</span></div>
+                                    </div>
+                                </div>
+                                 <div class="architecture-arrow mt-4">&#11015; <span class="text-sm ml-2">Proof Submission</span></div>
+                                <div id="solana-box" class="architecture-box w-full md:w-3/4 lg:w-2/3" data-title="Solana Blockchain" data-description="The high-performance blockchain where smart contracts verify the ZKPs and settle game outcomes.">
+                                    Solana Blockchain
+                                    <div class="mt-2 flex flex-col md:flex-row justify-around items-stretch">
+                                        <div id="verifier-contract-box" class="architecture-box !m-1 flex-1" data-title="Verifier Smart Contract (Rust)" data-description="A Solana program that contains the logic to verify ZKPs submitted by players, utilizing Solana's native ZKP precompiles for efficiency.">Verifier Smart Contract</div>
+                                        <div class="architecture-arrow mx-2 my-1 md:my-auto">&#10231; <span class="text-sm mx-1">Verifies</span></div>
+                                        <div id="marketplace-logic-box" class="architecture-box !m-1 flex-1" data-title="Marketplace Logic Contract (Rust)" data-description="Interacts with the verifier. Upon successful proof verification, this contract (or the verifier itself) can issue rewards, update leaderboards, or trigger other on-chain actions.">Marketplace Logic Contract</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow">
+                         <h3 class="text-2xl font-semibold mb-3 accordion-trigger cursor-pointer flex justify-between items-center">
+                            <span>Ecosystem Participants</span>
+                            <span class="accordion-icon transform transition-transform duration-300">&#9660;</span>
+                        </h3>
+                        <div class="accordion-content mt-2 space-y-3">
+                            <ul class="list-disc list-inside space-y-2 text-slate-600 leading-relaxed">
+                                <li><strong>Players:</strong> Engage with games, generate proofs via ZK-JS, and submit them to Einstein smart contracts for rewards/recognition.</li>
+                                <li><strong>Game Developers:</strong> Create no-code games, integrate with ZK-JS SDK, and deploy game-specific verifier contracts (or use templates).</li>
+                                <li><strong>Marketplace:</strong> Deploy the gaming platform, offers AI-generated games, and leverage Einstein APIs.</li>
+                                <li><strong>Einstein Team:</strong> Develop and secure the ZK-JS framework, ZKP schemes, verifier logic, and tooling.</li>
+                            </ul>
+                            <p class="text-slate-600 leading-relaxed mt-2">A key focus is on developer experience, abstracting ZKP complexities via APIs. The protocol aims to support both standardized and custom verifier contracts.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="zkjs-framework" class="content-section space-y-6">
+                    <h2 class="text-3xl font-bold mb-4">The ZK-JS Framework</h2>
+                    <p class="text-lg leading-relaxed">The ZK-JS framework is the technological heart of Einstein, enabling client-side JavaScript game logic to be cryptographically proven and verified on-chain. Its design prioritizes security, performance, developer experience, and determinism.</p>
+
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-2xl font-semibold mb-3 accordion-trigger cursor-pointer flex justify-between items-center">
+                            <span>Design Goals</span>
+                            <span class="accordion-icon transform transition-transform duration-300">&#9660;</span>
+                        </h3>
+                        <div class="accordion-content mt-2 space-y-3">
+                             <ul class="list-disc list-inside space-y-2 text-slate-600 leading-relaxed">
+                                <li><strong>Security:</strong> Unforgeable proofs (soundness) and no unintended information leakage (zero-knowledge).</li>
+                                <li><strong>Performance:</strong> Fast client-side proof generation (seconds, even on mobile) and efficient on-chain verification.</li>
+                                <li><strong>Developer Experience:</strong> Seamless integration for JS developers, abstracting ZKP complexities.</li>
+                                <li><strong>Determinism:</strong> Game logic must execute deterministically for ZKP validity.</li>
+                            </ul>
+                        </div>
+                    </div>
+                     <div class="bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-2xl font-semibold mb-3 accordion-trigger cursor-pointer flex justify-between items-center">
+                            <span>Ensuring Deterministic JavaScript Execution</span>
+                             <span class="accordion-icon transform transition-transform duration-300">&#9660;</span>
+                        </h3>
+                        <div class="accordion-content mt-2 space-y-3">
+                            <p class="text-slate-600 leading-relaxed">Standard JS has non-deterministic features (`Math.random()`, `Date.now()`, DOM interactions, timers, async ops). ZK-JS addresses this by:</p>
+                            <ul class="list-disc list-inside space-y-2 text-slate-600 leading-relaxed">
+                                <li>Defining a deterministic subset of JavaScript.</li>
+                                <li>Providing deterministic replacements for non-deterministic functions (e.g., seeded PRNG).</li>
+                                <li>Potentially sandboxing execution to manage API calls.</li>
+                                <li>Ensuring consistent floating-point arithmetic handling.</li>
+                            </ul>
+                            <p class="text-slate-600 leading-relaxed mt-2">Developers may need to refactor game logic to conform to these constraints.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-2xl font-semibold mb-3">JS to ZKP-Amenable Representations</h3>
+                        <p class="text-slate-600 leading-relaxed mb-4">Transforming deterministic JS into a ZKP-processable format is a core challenge. Two main approaches are considered:</p>
+                        <div class="mb-4 border-b border-slate-200">
+                            <nav class="flex space-x-1" aria-label="Tabs">
+                                <button class="tab-button active px-3 py-2 font-medium text-sm rounded-t-md text-slate-500 hover:text-sky-600" data-tab="direct-transpilation">Direct Transpilation to Circuits</button>
+                                <button class="tab-button px-3 py-2 font-medium text-sm rounded-t-md text-slate-500 hover:text-sky-600" data-tab="compile-ir">Compilation to Intermediate Representation</button>
+                            </nav>
+                        </div>
+                        <div id="direct-transpilation-content" class="tab-content active space-y-2">
+                            <h4 class="text-xl font-semibold text-sky-600">1. Direct Transpilation to ZKP Circuits (e.g., R1CS)</h4>
+                            <p class="text-slate-600 leading-relaxed">A specialized transpiler converts deterministic JS directly into an arithmetic circuit description (e.g., R1CS for zk-SNARKs like Groth16). Similar to how Circom compiles to R1CS.</p>
+                            <p class="text-slate-600 leading-relaxed"><strong>Advantages:</strong> Potentially highly optimized circuits for faster proof generation.</p>
+                            <p class="text-slate-600 leading-relaxed"><strong>Challenges:</strong> Extremely complex to build a robust and secure transpiler for JS. High risk of semantic errors and vulnerabilities in mapping dynamic JS features to static circuits.</p>
+                        </div>
+                        <div id="compile-ir-content" class="tab-content space-y-2">
+                            <h4 class="text-xl font-semibold text-sky-600">2. Compilation to an Intermediate Representation (e.g., WebAssembly for zkVMs)</h4>
+                            <p class="text-slate-600 leading-relaxed">Deterministic JS is compiled to WebAssembly (WASM). A Zero-Knowledge Virtual Machine (zkVM) then proves the correct execution of this WASM bytecode (e.g., zkWASM, RISC Zero).</p>
+                            <p class="text-slate-600 leading-relaxed"><strong>Advantages:</strong> Leverages existing JS-to-WASM compilers. zkVMs handle general-purpose computation, potentially supporting more JS features.</p>
+                            <p class="text-slate-600 leading-relaxed"><strong>Challenges:</strong> WASM from JS might not be ZK-optimal, leading to larger/less efficient circuits. Adds zkVM overhead. Proof sizes from zkVMs might be larger.</p>
+                        </div>
+                         <p class="mt-4 text-slate-600 leading-relaxed">The choice involves trade-offs between optimization potential, implementation complexity, feature support, and security assurance. The trustworthiness of this JS-to-provable-format mechanism is paramount.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-2xl font-semibold mb-3 accordion-trigger cursor-pointer flex justify-between items-center">
+                            <span>Circuit Design Considerations</span>
+                             <span class="accordion-icon transform transition-transform duration-300">&#9660;</span>
+                        </h3>
+                        <div class="accordion-content mt-2 space-y-3">
+                            <p class="text-slate-600 leading-relaxed">Regardless of the approach, JS game logic becomes arithmetic constraints:</p>
+                            <ul class="list-disc list-inside space-y-2 text-slate-600 leading-relaxed">
+                                <li><strong>Representing Game State:</strong> Variables, objects, arrays mapped to finite field elements.</li>
+                                <li><strong>Mapping JS Operations:</strong> Arithmetic, logic, conditionals, loops, functions broken into elementary arithmetic constraints.</li>
+                                <li><strong>Data Types & Overflows:</strong> Careful handling of JS 64-bit floats vs. ZKP finite fields to prevent errors.</li>
+                                <li><strong>Constraint Count Optimization:</strong> Crucial for prover performance. Use ZKP-friendly algorithms; bound/unroll loops.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-2xl font-semibold mb-3">Client-Side Proof Generation Times (Illustrative)</h3>
+                        <p class="text-slate-600 leading-relaxed mb-4">Performance is key for hyper-casual games. The following chart, based on Table 2 from the whitepaper, estimates proof generation times using libraries like snarkjs/websnark. These are rough estimates and depend on specific ZK-JS implementation and game logic.</p>
+                        <div class="chart-container">
+                            <canvas id="proofGenTimesChart"></canvas>
+                        </div>
+                        <p class="mt-4 text-slate-600 leading-relaxed">The estimates suggest feasibility for many hyper-casual game loops, especially on desktop. Mobile performance is a key optimization area. ZK-JS must manage logic complexity to stay within these performance envelopes.</p>
+                    </div>
+                </section>
+
+                <section id="solana-integration" class="content-section space-y-6">
+                    <h2 class="text-3xl font-bold mb-4">On-Chain Verification</h2>
+                     <p class="text-lg leading-relaxed">A high performant blockchain is necessary as the settlement layer for Einstein due to its high throughput, low latency, low transaction fees, and native ZKP support via `alt_bn128` precompiles. This section covers how proofs are verified on Solana.</p>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-2xl font-semibold mb-3 accordion-trigger cursor-pointer flex justify-between items-center">
+                            <span>Smart Contract Architecture for Proof Verification</span>
+                            <span class="accordion-icon transform transition-transform duration-300">&#9660;</span>
+                        </h3>
+                        <div class="accordion-content mt-2 space-y-3">
+                            <p class="text-slate-600 leading-relaxed">Solana programs (smart contracts) in Rust handle verification:</p>
+                            <ul class="list-disc list-inside space-y-2 text-slate-600 leading-relaxed">
+                                <li><strong>Inputs:</strong> ZKP (e.g., A, B, C points for Groth16), public inputs (session ID, player ID, outcome, game logic hash, verification key/commitment).</li>
+                                <li><strong>Verification Logic:</strong> Invokes Solana's `alt_bn128` syscalls (pairing checks, G1 ops) per the ZKP scheme's equation.</li>
+                                <li><strong>Outputs:</strong> Boolean for proof validity. If valid, may emit event, trigger reward contract, or store verified session record.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-2xl font-semibold mb-3">Transaction Flow: Proof Submission and Verification</h3>
+                        <ol class="list-decimal list-inside space-y-2 text-slate-600 leading-relaxed">
+                            <li>Player completes game session.</li>
+                            <li>Client-side ZK-JS framework generates ZKP.</li>
+                            <li>Client constructs Solana transaction with ZKP, public inputs, and CU request.</li>
+                            <li>Transaction signed and submitted to Solana network.</li>
+                            <li>Solana validators execute Einstein verifier smart contract.</li>
+                            <li>Verifier contract calls `alt_bn128` precompiles to check proof.</li>
+                            <li>If valid, contract executes post-verification actions (e.g., logs outcome, triggers reward).</li>
+                        </ol>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-2xl font-semibold mb-3">Solana Compute Unit (CU) & Cost Analysis (Groth16)</h3>
+                        <p class="text-slate-600 leading-relaxed mb-4">The CU cost of ZKP verification is crucial for economic viability. The chart below, based on Table 3, estimates these costs. Note: SOL costs are illustrative.</p>
+                        <div class="chart-container">
+                            <canvas id="cuCostChart"></canvas>
+                        </div>
+                        <ul class="mt-4 list-disc list-inside space-y-1 text-sm text-slate-500">
+                            <li>Groth16 verification (alt_bn128_pairing) is estimated at ~280,000 CU.</li>
+                            <li>Transactions *must* request sufficient CU budget (e.g., 300,000 CU) via `ComputeBudgetProgram.setComputeUnitLimit`.</li>
+                            <li>Total fee includes base fee (5000 Lamports/signature) + priority fee (CU limit * CU price). Example: 35,000 Lamports (~0.000035 SOL).</li>
+                            <li>Low cost underscores Solana's suitability, but CU budget management is vital.</li>
+                        </ul>
+                    </div>
+                     <div class="bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-2xl font-semibold mb-3 accordion-trigger cursor-pointer flex justify-between items-center">
+                            <span>Ensuring Data Availability for Verification</span>
+                            <span class="accordion-icon transform transition-transform duration-300">&#9660;</span>
+                        </h3>
+                        <div class="accordion-content mt-2 space-y-3">
+                            <p class="text-slate-600 leading-relaxed">The verifier needs the correct Verification Key (VK) for the game circuit. Strategies:</p>
+                            <ul class="list-disc list-inside space-y-2 text-slate-600 leading-relaxed">
+                                <li><strong>Store VKs On-Chain:</strong> In Solana accounts (incurs state rent).</li>
+                                <li><strong>Commit to VK Hash On-Chain:</strong> Player provides full VK with proof; contract verifies hash (reduces storage but VK sent with proof).</li>
+                                <li><strong>Standardized Verifier with Registered VKs:</strong> Central registry for game logic hashes and VKs.</li>
+                            </ul>
+                            <p class="text-slate-600 leading-relaxed mt-2">A "hash of game logic/rules" in public inputs ensures proof validity for a specific game version. Solana's transaction size limit (1232 bytes) must accommodate proof, public inputs, and other data.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="benefits" class="content-section space-y-6">
+                    <h2 class="text-3xl font-bold mb-4">Benefits and Features</h2>
+                    <p class="text-lg leading-relaxed">The Einstein protocol offers significant advantages for the Web3 gaming ecosystem by addressing key challenges.</p>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-white p-6 rounded-lg shadow">
+                            <h3 class="text-xl font-semibold text-sky-600 mb-2">💎 Provably Fair Games</h3>
+                            <p class="text-slate-600 leading-relaxed">Cryptographic assurance that game results are achieved per official logic, without tampering. Eliminates doubts and fosters a fair competitive environment.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow">
+                            <h3 class="text-xl font-semibold text-sky-600 mb-2">🛡️ Zero-Knowledge Proofs</h3>
+                            <p class="text-slate-600 leading-relaxed">ZKPs offer mathematical certainty, enabling provable fairness and integrity for game logic and outcomes without revealing underlying sensitive data or proprietary algorithms.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow">
+                            <h3 class="text-xl font-semibold text-sky-600 mb-2">🤖 AI-Powered Creation</h3>
+                            <p class="text-slate-600 leading-relaxed">Generative AI can now create diverse game logic, unique assets, and dynamic experiences on demand, opening doors for rapid prototyping and novel game designs./p>
+                        </div>
+                        <!--<div class="bg-white p-6 rounded-lg shadow">
+                            <h3 class="text-xl font-semibold text-sky-600 mb-2">🚀 Minimal Impact on Game Performance</h3>
+                            <p class="text-slate-600 leading-relaxed">Core game logic executes client-side for responsiveness. ZKP generation is post-session or minimally intrusive, avoiding on-chain performance bottlenecks.</p>
+                        </div>--!>
+                        <div class="bg-white p-6 rounded-lg shadow">
+                            <h3 class="text-xl font-semibold text-sky-600 mb-2">🌍 Web3 Creator Economy</h3>
+                            <p class="text-slate-600 leading-relaxed">Developers and creators can effortlessly create millions of AI-generated games, share them instantly, and monetize their creation..</p>
+                        </div>
+                         <div class="bg-white p-6 rounded-lg shadow md:col-span-2">
+                            <h3 class="text-xl font-semibold text-sky-600 mb-2">💡 Catalyst for LLM Game Designs & Reduced Development Overhead</h3>
+                            <p class="text-slate-600 leading-relaxed">Enables game mechanics previously too risky due to client-side vulnerabilities. Reduces operational overhead for developers/marketplaces (dispute resolution, fraud detection, reward processing).</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="security" class="content-section space-y-6">
+                    <h2 class="text-3xl font-bold mb-4">Security Considerations</h2>
+                    <p class="text-lg leading-relaxed">The security of the Einstein protocol is paramount and relies on the robustness of each component. A holistic approach is essential, as the system is only as strong as its weakest link.</p>
+                     <div class="bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-2xl font-semibold mb-3 accordion-trigger cursor-pointer flex justify-between items-center">
+                            <span>ZKP Scheme Security</span>
+                            <span class="accordion-icon transform transition-transform duration-300">&#9660;</span>
+                        </h3>
+                        <div class="accordion-content mt-2 space-y-3">
+                            <ul class="list-disc list-inside space-y-2 text-slate-600 leading-relaxed">
+                                <li><strong>Trusted Setup (Groth16/PLONK):</strong> Integrity of setup ceremony is critical. Compromised "toxic waste" allows false proofs. Mitigated by MPCs or PLONK's universal/updatable setup.</li>
+                                <li><strong>Cryptographic Assumptions:</strong> Relies on hard math problems (e.g., discrete log on elliptic curves). Standard, vetted parameters are crucial.</li>
+                                <li><strong>Quantum Resistance:</strong> Most zk-SNARKs (Groth16, PLONK) are not quantum-resistant. A long-term concern. zk-STARKs offer this but have other trade-offs.</li>
+                            </ul>
+                        </div>
+                    </div>
+                     <div class="bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-2xl font-semibold mb-3 accordion-trigger cursor-pointer flex justify-between items-center">
+                            <span>ZK-JS Framework Security</span>
+                            <span class="accordion-icon transform transition-transform duration-300">&#9660;</span>
+                        </h3>
+                        <div class="accordion-content mt-2 space-y-3">
+                             <p class="text-slate-600 leading-relaxed">The JS-to-provable-representation transpiler/compiler is security-critical.</p>
+                            <ul class="list-disc list-inside space-y-2 text-slate-600 leading-relaxed">
+                                <li><strong>Transpiler/Compiler Correctness:</strong> Must be sound (not prove false statements) and complete. Bugs can lead to under-constrained (cheating possible) or over-constrained (honest proofs fail) circuits. Rigorous testing, static analysis, formal verification, and tools like `zkFuzz` are essential.</li>
+                                <li><strong>Circuit Auditing:</strong> All generated circuits need expert auditing for pitfalls like overflows, incorrect library use, missing constraints, and logic errors.</li>
+                                <li><strong>Deterministic JS Environment Security:</strong> Methods for ensuring determinism (sandboxing, API patching) must be secure. Bypasses could compromise proof integrity.</li>
+                            </ul>
+                        </div>
+                    </div>
+                     <div class="bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-2xl font-semibold mb-3 accordion-trigger cursor-pointer flex justify-between items-center">
+                            <span>Smart Contract Security</span>
+                            <span class="accordion-icon transform transition-transform duration-300">&#9660;</span>
+                        </h3>
+                        <div class="accordion-content mt-2 space-y-3">
+                            <ul class="list-disc list-inside space-y-2 text-slate-600 leading-relaxed">
+                                <li><strong>Standard Vulnerabilities:</strong> Reentrancy, overflows, access control, etc., apply and need mitigation through secure coding and audits.</li>
+                                <li><strong>Verifier Logic Integrity:</strong> Must correctly implement ZKP verification. Auditing verifier contract code itself (not just circuits) is crucial (e.g., `snarkjs` input aliasing vulnerability).</li>
+                            </ul>
+                        </div>
+                    </div>
+                     <div class="bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-2xl font-semibold mb-3 accordion-trigger cursor-pointer flex justify-between items-center">
+                            <span>Preventing Malicious Proofs and Replay Attacks</span>
+                            <span class="accordion-icon transform transition-transform duration-300">&#9660;</span>
+                        </h3>
+                        <div class="accordion-content mt-2 space-y-3">
+                            <ul class="list-disc list-inside space-y-2 text-slate-600 leading-relaxed">
+                                <li><strong>Public Input Validation:</strong> Rigorous validation (range checks, type checks, consistency) by the verifier contract.</li>
+                                <li><strong>Replay Attack Prevention:</strong> Use unique, unpredictable nonces or session IDs (tied to player/game) in public inputs. Verifier ensures each is processed only once.</li>
+                            </ul>
+                        </div>
+                    </div>
+                     <div class="bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-2xl font-semibold mb-3 accordion-trigger cursor-pointer flex justify-between items-center">
+                            <span>Security of Client-Side Environment & Auditing</span>
+                            <span class="accordion-icon transform transition-transform duration-300">&#9660;</span>
+                        </h3>
+                        <div class="accordion-content mt-2 space-y-3">
+                             <p class="text-slate-600 leading-relaxed">Client-side security (browser, OS) is a broader Web3 concern. Malware could steal keys or manipulate inputs pre-ZK-JS.</p>
+                             <p class="text-slate-600 leading-relaxed mt-2">Auditing ZK-based systems, especially with a novel JS-to-circuit layer, is complex and requires specialized expertise in JS internals, ZKP circuit design, cryptography, and Solana security. A multi-faceted auditing strategy is recommended.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="use-cases" class="content-section space-y-6">
+                    <h2 class="text-3xl font-bold mb-4">Use Cases</h2>
+                    <p class="text-lg leading-relaxed">The Einstein protocol and its ZK-JS framework are primarily targeted at AI-generated games but have potential for broader applications in verifiable off-chain computation.</p>
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-2xl font-semibold mb-3">AI-Powered Marketplace</h3>
+                        <p class="text-slate-600 leading-relaxed">A "Roblox of Web3" enables creators to design games quickly and efficiently with LLMs reducing development cycles from months to minutes. 
+</p>
+                        <p class="text-slate-600 leading-relaxed mt-2"><strong>Impact:</strong> Einstein protocol is the backbone infrastructure. When a game's critical AI-generated JavaScript components are verified by Einstein, associated game tokens benefit from this trust layer, with their utility and interactions underpinned by Einstein's attestations on the underlying code.</p>
+                    </div>
+                     <div class="bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-2xl font-semibold mb-3">Content Authentication</h3>
+                        <p class="text-slate-600 leading-relaxed">The on-chain attestations created by Einstein would serve as immutable, transparent, and cryptographically secure proofs of these specific aspects of content authentication, building trust in an ecosystem increasingly populated by AI-generated material. This is distinct from, but complementary to, other content authentication methods like digital watermarking or metadata standards like C2PA, as Einstein provides deep, cryptographic proof about the underlying logic and generative processes when JavaScript is involved.</p>
+                      <!--  <ul class="list-disc list-inside space-y-1 text-slate-600 leading-relaxed mt-2">
+                            erifying game results.</li>
+                            <li>Enabling fairer skill-based matchmaking using verified performance metrics.</li>
+                        </ul>--!>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-2xl font-semibold mb-3">Off-Chain Computation</h3>
+                        <p class="text-slate-600 leading-relaxed">If ZK-JS can efficiently prove a rich, deterministic JS subset, applications could extend to:</p>
+                        <ul class="list-disc list-inside space-y-1 text-slate-600 leading-relaxed mt-2">
+                            <li><strong>Verifiable Client-Side Data Processing:</strong> Users prove correct local computation (e.g., privacy-preserving analytics, DeSci) without revealing raw data.</li>
+                            <li><strong>Private Attestations:</strong> Users prove facts about online interactions or client state (e.g., "visited X pages," "config meets criteria") for rewards/access, preserving privacy.</li>
+                            <li><strong>Verifiable Client-Side AI Inference:</strong> Proving correct execution of small, client-side AI models.</li>
+                        </ul>
+                        <p class="text-slate-600 leading-relaxed mt-2">Success in gaming could create network effects, positioning Einstein as a standard for verifiable client-side logic and paving the way for a "Verifiable Client-Side Web."</p>
+                    </div>
+                </section>
+
+                <section id="roadmap" class="content-section space-y-6">
+                    <h2 class="text-3xl font-bold mb-4">Future Work and Roadmap</h2>
+                    <p class="text-lg leading-relaxed">The launch of Einstein is the beginning. Continuous development and research are vital for its evolution and adoption. The roadmap focuses on protocol enhancements, expanding ZK-JS capabilities, improving developer support, and exploring advanced ZKP features.</p>
+                     <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-white p-4 rounded-lg shadow">
+                            <h4 class="text-lg font-semibold text-sky-600 mb-1">Protocol Enhancements</h4>
+                            <ul class="list-disc list-inside text-sm text-slate-600 space-y-1">
+                                <li>Improve client-side prover performance (optimize transpiler, explore new ZKP schemes/variants, WebGPU/WASM SIMD).</li>
+                                <li>Reduce on-chain verifier CU cost.</li>
+                                <li>Increase constraint capacity for more complex JS logic.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow">
+                            <h4 class="text-lg font-semibold text-sky-600 mb-1">Expanding ZK-JS Language Support</h4>
+                            <ul class="list-disc list-inside text-sm text-slate-600 space-y-1">
+                                <li>Safely expand the deterministic JS subset supported.</li>
+                                <li>Investigate compatibility with popular JS game libraries/engines.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow">
+                            <h4 class="text-lg font-semibold text-sky-600 mb-1">Tooling & Developer Support</h4>
+                            <ul class="list-disc list-inside text-sm text-slate-600 space-y-1">
+                                <li>Enhance SDK (APIs, docs, examples).</li>
+                                <li>Develop JS-to-circuit debugging tools.</li>
+                                <li>Create extensive educational resources (tutorials, guides, workshops).</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow">
+                            <h4 class="text-lg font-semibold text-sky-600 mb-1">Research into Advanced ZKP Features</h4>
+                            <ul class="list-disc list-inside text-sm text-slate-600 space-y-1">
+                                <li>Explore proof recursion/composition for complex sessions or combining proofs.</li>
+                                <li>Re-evaluate ZKP scheme choices as the field evolves.</li>
+                                <li>Research ZKPs for privacy-preserving multi-player interactions.</li>
+                            </ul>
+                        </div>
+                         <div class="bg-white p-4 rounded-lg shadow md:col-span-2">
+                            <h4 class="text-lg font-semibold text-sky-600 mb-1">Community Building & Adoption</h4>
+                            <ul class="list-disc list-inside text-sm text-slate-600 space-y-1">
+                                <li>Foster a vibrant community.</li>
+                                <li>Organize hackathons and developer outreach.</li>
+                                <li>Partner with gaming marketplaces, studios, and DeFi oracles.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--<p class="mt-4 text-slate-600 leading-relaxed">A key challenge is balancing JS feature expansion with circuit complexity, proof time, and transpilation security. Interoperability with other ZK systems and standards is a long-term goal.</p>--!>
+                </section>
+
+                <section id="glossary" class="content-section space-y-6">
+                    <h2 class="text-3xl font-bold mb-4">Glossary</h2>
+                    <p class="text-lg leading-relaxed">Key terms used in the Einstein Protocol whitepaper and this explorer.</p>
+                    <div id="glossary-list" class="space-y-4">
+                        </div>
+                </section>
+
+                <!-- Navigation Controls -->
+                <div class="mt-12 mb-8">
+                    <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="index.html" class="navigation-button w-full sm:w-auto">
+                            <span class="flex items-center justify-center">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                                </svg>
+                                Home
+                            </span>
+                        </a>
+                        <button id="prevSection" class="navigation-button w-full sm:w-auto" disabled>
+                            <span class="flex items-center justify-center">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                                </svg>
+                                <span class="section-title">Previous</span>
+                            </span>
+                        </button>
+                        <button id="nextSection" class="navigation-button w-full sm:w-auto">
+                            <span class="flex items-center justify-center">
+                                <span class="section-title">Next</span>
+                                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer class="py-12 px-6 text-center text-gray-500 border-t border-gray-800">
+        <div class="flex justify-center space-x-8 mb-6">
+            <a href="https://x.com/zkEinstein" class="text-gray-400 hover:text-white transition-colors duration-300" aria-label="Twitter">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path>
+                </svg>
+            </a>
+            <a href="https://discord.gg/euFxrH4DPY" class="text-gray-400 hover:text-white transition-colors duration-300" aria-label="Discord">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"></path>
+                </svg>
+            </a>
+            <a href="https://www.youtube.com/@zkEinstein" class="text-gray-400 hover:text-white transition-colors duration-300" aria-label="YouTube">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"></path>
+                </svg>
+            </a>
+            <a href="https://github.com/zkEinstein?tab=repositories" class="text-gray-400 hover:text-white transition-colors duration-300" aria-label="GitHub">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path>
+                </svg>
+            </a>
+        </div>
+        <p class="text-lg">&copy; 2025 Einstein Protocol. All rights reserved.</p>
+    </footer>
+
+    <div id="componentModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <h3 id="modalTitle" class="text-2xl font-semibold text-sky-700 mb-3">Component Detail</h3>
+            <p id="modalDescription" class="text-slate-600 leading-relaxed"></p>
+        </div>
+    </div>
+
+    <script>
+        const sections = [
+            { id: 'overview', name: 'Overview' },
+            { id: 'challenge', name: 'The Challenge' },
+            { id: 'introducing-einstein', name: 'Introducing Einstein' },
+            { id: 'core-concepts', name: 'Core Concepts' },
+            { id: 'architecture', name: 'Architecture' },
+            { id: 'zkjs-framework', name: 'ZK-JS Framework' },
+            { id: 'solana-integration', name: 'Blockchain' },
+            { id: 'benefits', name: 'Features' },
+            { id: 'security', name: 'Security' },
+            { id: 'use-cases', name: 'Use Cases' },
+            { id: 'roadmap', name: 'Roadmap' },
+            { id: 'glossary', name: 'Glossary' }
+        ];
+
+        const contentArea = document.getElementById('contentArea');
+        const desktopSidebar = document.getElementById('desktopSidebar');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const componentModal = document.getElementById('componentModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDescription = document.getElementById('modalDescription');
+        const prevButton = document.getElementById('prevSection');
+        const nextButton = document.getElementById('nextSection');
+        let currentSectionIndex = 0;
+
+        function navigateTo(sectionId) {
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.dataset.section === sectionId) {
+                    link.classList.add('active');
+                }
+            });
+            // For mobile, close menu after navigation
+            if (!mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+            }
+            window.scrollTo(0, 0); // Scroll to top of page
+        }
+
+        function updateNavigationButtons() {
+            prevButton.disabled = currentSectionIndex === 0;
+            nextButton.disabled = currentSectionIndex === sections.length - 1;
+            
+            // Update section titles
+            const prevTitle = prevButton.querySelector('.section-title');
+            const nextTitle = nextButton.querySelector('.section-title');
+            
+            if (currentSectionIndex > 0) {
+                prevTitle.textContent = sections[currentSectionIndex - 1].name;
+            } else {
+                prevTitle.textContent = 'Previous';
+            }
+            
+            if (currentSectionIndex < sections.length - 1) {
+                nextTitle.textContent = sections[currentSectionIndex + 1].name;
+            } else {
+                nextTitle.textContent = 'Next';
+            }
+        }
+
+        function navigateToSection(index) {
+            if (index >= 0 && index < sections.length) {
+                currentSectionIndex = index;
+                navigateTo(sections[index].id);
+                updateNavigationButtons();
+            }
+        }
+
+        function createNavLink(section) {
+            const link = document.createElement('a');
+            link.href = '#';
+            link.textContent = section.name;
+            link.classList.add('nav-link', 'text-slate-600');
+            link.dataset.section = section.id;
+            link.onclick = (e) => {
+                e.preventDefault();
+                navigateTo(section.id);
+            };
+            return link;
+        }
+        
+        const desktopNavContainer = document.createElement('div');
+        desktopNavContainer.className = 'space-y-1';
+        sections.forEach(section => desktopNavContainer.appendChild(createNavLink(section)));
+        desktopSidebar.appendChild(desktopNavContainer);
+
+        const mobileNavContainer = document.createElement('div');
+        mobileNavContainer.className = 'px-2 pt-2 pb-3 space-y-1 sm:px-3';
+        sections.forEach(section => mobileNavContainer.appendChild(createNavLink(section)));
+        mobileMenu.innerHTML = ''; // Clear potential placeholders
+        mobileMenu.appendChild(mobileNavContainer);
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        prevButton.addEventListener('click', () => {
+            navigateToSection(currentSectionIndex - 1);
+        });
+
+        nextButton.addEventListener('click', () => {
+            navigateToSection(currentSectionIndex + 1);
+        });
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', () => {
+            navigateTo(sections[0].id);
+            updateNavigationButtons();
+        });
+
+        // Accordion functionality
+        document.querySelectorAll('.accordion-trigger').forEach(trigger => {
+            trigger.addEventListener('click', () => {
+                const content = trigger.nextElementSibling;
+                const icon = trigger.querySelector('.accordion-icon');
+                if (content.style.maxHeight && content.style.maxHeight !== "0px") {
+                    content.style.maxHeight = "0px";
+                    icon.style.transform = 'rotate(0deg)';
+                } else {
+                    // Calculate the scrollHeight of the content to set maxHeight
+                    // This ensures the transition works correctly.
+                    // Temporarily set display to block to measure scrollHeight if it's 0 due to display:none from parent
+                    const parentSection = content.closest('.content-section');
+                    let wasHidden = false;
+                    if (parentSection && parentSection.style.display === 'none') {
+                        parentSection.style.display = 'block';
+                        wasHidden = true;
+                    }
+                    
+                    content.style.maxHeight = content.scrollHeight + "px";
+                    
+                    if (wasHidden) {
+                         parentSection.style.display = 'none'; // Restore if it was hidden
+                    }
+                    icon.style.transform = 'rotate(180deg)';
+                }
+            });
+        });
+
+        // Tab functionality for ZK-JS Approaches
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const tabId = button.dataset.tab;
+
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                tabContents.forEach(content => {
+                    if (content.id === `${tabId}-content`) {
+                        content.classList.add('active');
+                    } else {
+                        content.classList.remove('active');
+                    }
+                });
+            });
+        });
+        
+        // Modal functionality for architecture diagram
+        document.querySelectorAll('.architecture-box').forEach(box => {
+            if(box.dataset.title && box.dataset.description) { // Ensure it's a clickable box
+                box.addEventListener('click', () => {
+                    modalTitle.textContent = box.dataset.title;
+                    modalDescription.textContent = box.dataset.description;
+                    componentModal.style.display = 'flex';
+                });
+            }
+        });
+
+        function closeModal() {
+            componentModal.style.display = 'none';
+        }
+        // Close modal if user clicks outside of it
+        window.onclick = function(event) {
+            if (event.target == componentModal) {
+                closeModal();
+            }
+        }
+
+
+        // Chart.js: Proof Generation Times
+        const proofGenTimesCtx = document.getElementById('proofGenTimesChart')?.getContext('2d');
+        if (proofGenTimesCtx) {
+            new Chart(proofGenTimesCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Simple Clicker/Score Tracker', 'Basic Physics (e.g., Flappy Bird)', 'Multi-Step Puzzle/State Machine'],
+                    datasets: [
+                        {
+                            label: 'Desktop Browser (seconds)',
+                            data: [2, 5.5, 10], // Mid-points: (1+3)/2=2, (3+8)/2=5.5, (5+15)/2=10
+                            backgroundColor: 'rgba(56, 189, 248, 0.6)', // sky-400
+                            borderColor: 'rgba(14, 165, 233, 1)', // sky-500
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Mobile Browser (seconds)',
+                            data: [3.5, 10, 20], // Mid-points: (2+5)/2=3.5, (5+15)/2=10, (10+30)/2=20
+                            backgroundColor: 'rgba(125, 211, 252, 0.6)', // sky-300
+                            borderColor: 'rgba(56, 189, 248, 1)', // sky-400
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: { display: true, text: 'Est. Proof Gen. Time (seconds)' }
+                        },
+                        x: {
+                             ticks: {
+                                callback: function(value, index, values) {
+                                    const label = this.getLabelForValue(value);
+                                    if (label.length > 16) { // Max length before wrapping
+                                        const words = label.split(' ');
+                                        const lines = [];
+                                        let currentLine = '';
+                                        words.forEach(word => {
+                                            if ((currentLine + word).length > 16 && currentLine.length > 0) {
+                                                lines.push(currentLine.trim());
+                                                currentLine = '';
+                                            }
+                                            currentLine += word + ' ';
+                                        });
+                                        lines.push(currentLine.trim());
+                                        return lines;
+                                    }
+                                    return label;
+                                },
+                                autoSkip: false,
+                                maxRotation: 0,
+                                minRotation: 0
+                            }
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            enabled: true,
+                            mode: 'index',
+                            intersect: false,
+                        }
+                    }
+                }
+            });
+        }
+
+        // Chart.js: CU Cost
+        const cuCostCtx = document.getElementById('cuCostChart')?.getContext('2d');
+        if (cuCostCtx) {
+            new Chart(cuCostCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Groth16 Verification', 'Other Contract Logic', 'Total Requested CU Budget'],
+                    datasets: [{
+                        label: 'Estimated Compute Units (CU)',
+                        data: [280000, 10000, 300000], // Example data from Table 3 (mid for other logic)
+                        backgroundColor: [
+                            'rgba(56, 189, 248, 0.6)', // sky-400
+                            'rgba(125, 211, 252, 0.6)', // sky-300
+                            'rgba(14, 165, 233, 0.6)'  // sky-500
+                        ],
+                        borderColor: [
+                            'rgba(14, 165, 233, 1)',
+                            'rgba(56, 189, 248, 1)',
+                            'rgba(2, 132, 199, 1)' // sky-600
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: { display: true, text: 'Estimated Compute Units (CU)' }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            enabled: true,
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.y !== null) {
+                                        label += new Intl.NumberFormat().format(context.parsed.y) + ' CU';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Glossary Data & Population
+        const glossaryTerms = [
+            { term: "Arithmetic Circuit", definition: "A representation of a computation using only arithmetic operations (addition and multiplication) over a finite field, used as an input to many ZKP systems." },
+            { term: "BN254 (alt_bn128)", definition: "A specific pairing-friendly elliptic curve often used in zk-SNARK constructions like Groth16, supported by Solana's precompiles." },
+            { term: "Circom", definition: "A domain-specific language for writing arithmetic circuits, which can be compiled to R1CS for use with zk-SNARKs like Groth16." },
+            { term: "Compute Unit (CU)", definition: "The unit of computational work on the Solana blockchain, used to measure transaction processing cost." },
+            { term: "Constraint System", definition: "A set of mathematical equations (constraints) that must be satisfied by the inputs and intermediate values (witness) of a computation for a ZKP to be valid." },
+            { term: "Groth16", definition: "A popular zk-SNARK scheme known for its very small proof sizes and fast verification, but requires a per-circuit trusted setup." },
+            { term: "PLONK", definition: "A zk-SNARK scheme that offers a universal and updatable trusted setup." },
+            { term: "Proving Key (PK)", definition: "A cryptographic key, generated during the trusted setup, used by the prover to create a ZKP for a specific circuit." },
+            { term: "R1CS (Rank-1 Constraint System)", definition: "A common format for representing arithmetic circuits, where each constraint is of the form A * B - C = 0, with A, B, C being linear combinations of witness values." },
+            { term: "Snarkjs", definition: "A JavaScript library for generating and verifying zk-SNARK proofs (including Groth16 and PLONK) in browser and Node.js environments." },
+            { term: "Solana Program (Smart Contract)", definition: "Code deployed on the Solana blockchain that can execute logic, manage state, and interact with other programs." },
+            { term: "Syscall (System Call)", definition: "An interface for Solana programs to request services from the Solana runtime, such as cryptographic precompiles." },
+            { term: "Trusted Setup", definition: "A preliminary procedure required by some ZKP schemes (like Groth16) to generate public parameters (Proving Key and Verification Key). Its security relies on the fact that at least one participant in the setup ceremony honestly destroys their secret contribution." },
+            { term: "Verification Key (VK)", definition: "A cryptographic key, generated during the trusted setup, used by the verifier to check the validity of a ZKP for a specific circuit." },
+            { term: "WebAssembly (WASM)", definition: "A binary instruction format for a stack-based virtual machine, designed as a portable compilation target for high-level languages like C++, Rust, and AssemblyScript." },
+            { term: "Witness", definition: "The set of all input values (public and private) and intermediate values computed during the execution of a program/circuit that satisfy all its constraints." },
+            { term: "zkVM (Zero-Knowledge Virtual Machine)", definition: "A virtual machine whose execution can be proven using ZKPs, allowing for verifiable computation of general-purpose programs." },
+            { term: "zkWASM", definition: "A specific type of zkVM designed to prove the execution of WebAssembly bytecode." }
+        ];
+
+        const glossaryListContainer = document.getElementById('glossary-list');
+        if (glossaryListContainer) {
+            glossaryTerms.sort((a, b) => a.term.localeCompare(b.term)).forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'bg-white p-4 rounded-lg shadow';
+                const termEl = document.createElement('h4');
+                termEl.className = 'text-lg font-semibold text-sky-600 mb-1';
+                termEl.textContent = item.term;
+                const defEl = document.createElement('p');
+                defEl.className = 'text-slate-600 leading-relaxed text-sm';
+                defEl.textContent = item.definition;
+                div.appendChild(termEl);
+                div.appendChild(defEl);
+                glossaryListContainer.appendChild(div);
+            });
+        }
+    </script>
+</body>
+</html>
