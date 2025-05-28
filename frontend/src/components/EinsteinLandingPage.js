@@ -33,7 +33,7 @@ const EinsteinLandingPage = () => {
     { name: 'Features', href: '#features' },
     { name: 'How It Works', href: '#how-it-works' },
     { name: 'Benefits', href: '#benefits' },
-    { name: 'Developers', href: '#developers' },
+    { name: 'Developers', href: '#ready-to-build' },
   ];
 
   const features = [
@@ -443,7 +443,7 @@ const EinsteinLandingPage = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 relative">
+      <section id="ready-to-build" className="py-20 relative">
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-purple-900/50 to-black/80"></div>
         
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
