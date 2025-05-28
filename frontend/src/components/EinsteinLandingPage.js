@@ -214,7 +214,7 @@ const EinsteinLandingPage = () => {
               AI Gaming
             </span>
             <br />
-            <span className="text-white">Reimagined</span>
+            <span className="text-white">Economy</span>
           </motion.h1>
           
           <motion.p
@@ -223,9 +223,8 @@ const EinsteinLandingPage = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-xl md:text-2xl text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed"
           >
-            Einstein protocol brings <span className="text-cyan-400 font-semibold">zero-knowledge proofs</span> to gaming, 
-            ensuring every outcome is verifiable, fair, and tamper-proof. 
-            <span className="text-purple-400"> The future of trustless gaming is here.</span>
+            Einstein protocol brings <span className="text-cyan-400 font-semibold">zero-knowledge proofs</span> to gaming, creating a new asset class that is verifiable and fair. 
+            <span className="text-purple-400"> The future of gaming is here.</span>
           </motion.p>
 
           <motion.div
