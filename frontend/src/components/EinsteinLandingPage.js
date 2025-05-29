@@ -214,7 +214,7 @@ const EinsteinLandingPage = () => {
               A Quantum Leap
             </span>
             <br />
-            <span className="text-white">In Value</span>
+            <span className="text-white">In Valuation</span>
           </motion.h1>
           
           <motion.p
@@ -224,7 +224,7 @@ const EinsteinLandingPage = () => {
             className="text-xl md:text-2xl text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed"
           >
             Einstein protocol <span className="text-cyan-400 font-semibold">tokenizes AI-generated games</span> at scale to create a novel asset class. 
-            <span className="text-purple-400"> The future of digital value is quantifiable.</span>
+            <span className="text-purple-400"> The future of gaming is quantifiable.</span>
           </motion.p>
 
           <motion.div
