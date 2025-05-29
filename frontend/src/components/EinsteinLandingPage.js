@@ -398,7 +398,7 @@ const EinsteinLandingPage = () => {
               </span>
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Einstein protocol delivers value to developers and players alike
+              Einstein lowers the barrier to game development empowering everyday users
             </p>
           </motion.div>
 
