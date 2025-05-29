@@ -211,10 +211,10 @@ const EinsteinLandingPage = () => {
             className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight"
           >
             <span className="bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-              AI Gaming
+              A Quantum Leap
             </span>
             <br />
-            <span className="text-white">Economy</span>
+            <span className="text-white">In Value</span>
           </motion.h1>
           
           <motion.p
