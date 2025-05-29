@@ -83,7 +83,7 @@ const EinsteinLandingPage = () => {
   const howItWorks = [
     {
       step: '01',
-      title: 'Game Logic Integration',
+      title: 'Game Logic Tokenization',
       description: 'Developers integrate Einstein SDK into their game logic and outcome generation.',
     },
     {
