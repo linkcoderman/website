@@ -44,8 +44,8 @@ const EinsteinLandingPage = () => {
     },
     {
       icon: Gamepad2,
-      title: 'AI Gaming Infrastructure',
-      description: 'Complete gaming stack with seamless integration for developers and players.'
+      title: 'AI Infrastructure',
+      description: 'Fine-tuned LLM with seamless integration for developers and players.'
     },
     {
       icon: Zap,
