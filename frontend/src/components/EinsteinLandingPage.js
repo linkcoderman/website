@@ -223,8 +223,8 @@ const EinsteinLandingPage = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-xl md:text-2xl text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed"
           >
-            Einstein protocol brings <span className="text-cyan-400 font-semibold">zero-knowledge proofs</span> to gaming, creating a new asset class that is verifiable and fair. 
-            <span className="text-purple-400"> The future of gaming is here.</span>
+            Einstein protocol <span className="text-cyan-400 font-semibold">tokenizes AI-generated games</span> at scale using zero-knowledge proofs to form a new asset class. 
+            <span className="text-purple-400"> The future of digital value has arrived.</span>
           </motion.p>
 
           <motion.div
