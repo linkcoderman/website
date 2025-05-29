@@ -299,7 +299,7 @@ const EinsteinLandingPage = () => {
               </span>
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Built for the next generation of gaming with cutting-edge technology
+              Built for the next generation of developers with cutting-edge technology
             </p>
           </motion.div>
 
