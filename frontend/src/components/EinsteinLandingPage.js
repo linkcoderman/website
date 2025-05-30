@@ -83,7 +83,7 @@ const EinsteinLandingPage = () => {
   const howItWorks = [
     {
       step: '01',
-      title: 'Game Logic Tokenization',
+      title: 'Natural Language Instructions',
       description: 'Developers integrate Einstein protocol into their game logic and instantly publish a tradeabe asset.',
     },
     {
