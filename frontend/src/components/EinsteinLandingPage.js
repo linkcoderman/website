@@ -83,7 +83,7 @@ const EinsteinLandingPage = () => {
   const howItWorks = [
     {
       step: '01',
-      title: 'Natural Language Instructions',
+      title: 'Natural Language',
       description: 'Developers integrate Einstein protocol for instruction-driven game creation.',
     },
     {
