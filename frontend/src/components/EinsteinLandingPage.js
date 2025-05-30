@@ -214,7 +214,7 @@ const EinsteinLandingPage = () => {
               A Quantum Leap
             </span>
             <br />
-            <span className="text-white">In Development</span>
+            <span className="text-white">In Development Time</span>
           </motion.h1>
           
           <motion.p
