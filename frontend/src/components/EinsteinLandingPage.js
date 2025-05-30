@@ -133,7 +133,7 @@ const EinsteinLandingPage = () => {
               <button
                 className="bg-gradient-to-r from-cyan-500 to-purple-600 px-6 py-2 rounded-full font-semibold hover:shadow-lg hover:shadow-cyan-500/25 transition-all duration-300"
               >
-                <a href="https://ghostnite.com" target="_blank" rel="noopener noreferrer">Experience</a>
+                <a href="https://einstein.quest" target="_blank" rel="noopener noreferrer">Experience Einstein</a>
               </button>
             </div>
 
@@ -165,7 +165,7 @@ const EinsteinLandingPage = () => {
                 </a>
               ))}
               <button className="w-full mt-4 bg-gradient-to-r from-cyan-500 to-purple-600 px-6 py-2 rounded-full font-semibold">
-                <a href="https://ghostnite.com" target="_blank" rel="noopener noreferrer">Experience</a>
+                <a href="https://einstein.quest" target="_blank" rel="noopener noreferrer">Experience Einstein</a>
               </button>
             </motion.div>
           )}
@@ -236,8 +236,8 @@ const EinsteinLandingPage = () => {
             <button
               className="bg-gradient-to-r from-cyan-500 to-purple-600 px-8 py-4 rounded-full font-bold text-lg flex items-center space-x-2 hover:shadow-xl hover:shadow-cyan-500/25 transition-all duration-300"
             >
-              <a href="https://ghostnite.com" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2">
-                <span>Experience</span>
+              <a href="https://einstein.quest" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2">
+                <span>Experience Einstein</span>
                 <ArrowRight size={20} />
               </a>
             </button>
@@ -466,8 +466,8 @@ const EinsteinLandingPage = () => {
               <button
                 className="bg-gradient-to-r from-cyan-500 to-purple-600 px-8 py-4 rounded-full font-bold text-lg flex items-center space-x-2 hover:shadow-xl hover:shadow-cyan-500/25 transition-all duration-300"
               >
-                <a href="https://ghostnite.com" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2">
-                  <span>Experience</span>
+                <a href="https://einstein.quest" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2">
+                  <span>Experience Einstein</span>
                   <ArrowRight size={20} />
                 </a>
               </button>
