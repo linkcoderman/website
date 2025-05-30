@@ -45,7 +45,7 @@ const EinsteinLandingPage = () => {
     {
       icon: Gamepad2,
       title: 'AI Infrastructure',
-      description: 'Fine-tuned LLM with seamless integration for developers and players.'
+      description: 'Ignite Creativity and Trust with our fine-tuned LLMs, engineered for seamless integration within the ZK-JS framework.'
     },
     {
       icon: Zap,
@@ -458,8 +458,8 @@ const EinsteinLandingPage = () => {
               </span>
             </h2>
             <p className="text-xl text-gray-300 mb-12 leading-relaxed">
-              Join the revolution of verifiable gaming. Start integrating Einstein protocol 
-              into your games today and give your players the trust they deserve.
+              Join the revolution of AI gaming. Start integrating Einstein protocol 
+              into your games today and give your players the inspirational incentives.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -487,7 +487,6 @@ const EinsteinLandingPage = () => {
                 </span>
               </div>
               <p className="text-gray-400 max-w-md leading-relaxed mb-6">
-                Revolutionizing AI Gaming with zero-knowledge proofs. 
                 Building the future of verifiable, trustless gaming experiences.
               </p>
             </div>
