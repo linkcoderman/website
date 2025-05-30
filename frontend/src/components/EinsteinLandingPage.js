@@ -84,7 +84,7 @@ const EinsteinLandingPage = () => {
     {
       step: '01',
       title: 'Game Logic Tokenization',
-      description: 'Developers integrate Einstein SDK into their game logic and outcome generation.',
+      description: 'Developers integrate Einstein protocol into their game logic and instantly publish a tradeabe asset.',
     },
     {
       step: '02',
@@ -459,7 +459,7 @@ const EinsteinLandingPage = () => {
             </h2>
             <p className="text-xl text-gray-300 mb-12 leading-relaxed">
               Join the revolution of AI gaming. Start integrating Einstein protocol 
-              into your games today and give your players the inspirational incentives.
+              into your games today and give your players incredible incentives.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
