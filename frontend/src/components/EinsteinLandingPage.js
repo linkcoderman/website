@@ -496,7 +496,7 @@ const EinsteinLandingPage = () => {
               <ul className="space-y-2">
                 <li><a href="https://github.com/zkEinstein" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-cyan-400 transition-colors duration-300">GitHub</a></li>
                 <li><a href="/documentation.html" className="text-gray-400 hover:text-cyan-400 transition-colors duration-300">Documentation</a></li>
-                <li><a href="https://swarm.cool" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-cyan-400 transition-colors duration-300">Swarm</a></li>
+                <li><a href="https://einstein.cool" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-cyan-400 transition-colors duration-300">Cool</a></li>
               </ul>
             </div>
             
