@@ -54,7 +54,7 @@ const EinsteinLandingPage = () => {
     },
     {
       icon: Code,
-      title: 'Developer-First SDK',
+      title: 'Neural Game Engine',
       description: 'Comprehensive tools and APIs to integrate verifiable gaming logic into any game.'
     }
   ];
