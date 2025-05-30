@@ -63,7 +63,7 @@ const EinsteinLandingPage = () => {
     {
       category: 'Game Developers',
       items: [
-        'Eliminate cheating and exploit concerns',
+        'Democratizes game development',
         'Build trust with transparent, verifiable outcomes',
         'Easy integration with existing game engines',
         'Comprehensive documentation and support'
@@ -72,7 +72,7 @@ const EinsteinLandingPage = () => {
     {
       category: 'Players',
       items: [
-        'Guaranteed fair play in every game',
+        'Winner takes all rewards',
         'Transparent and verifiable results',
         'Enhanced gaming experience with trust',
         'True ownership of game assets and achievements'
@@ -223,8 +223,7 @@ const EinsteinLandingPage = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-xl md:text-2xl text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed"
           >
-            Einstein protocol <span className="text-cyan-400 font-semibold">tokenizes AI-generated games</span> at scale to create a novel asset class. 
-            <span className="text-purple-400"> The future of gaming is quantifiable.</span>
+            Einstein protocol is <span className="text-cyan-400 font-semibold">designed to be instructable and scalable</span>, enabling anyone to publish a new game simply by providing prompts.
           </motion.p>
 
           <motion.div
