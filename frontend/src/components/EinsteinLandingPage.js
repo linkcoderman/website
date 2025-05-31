@@ -84,7 +84,7 @@ const EinsteinLandingPage = () => {
     {
       step: '01',
       title: 'Natural Language',
-      description: 'Developers integrate Einstein protocol for instruction-driven game creation.',
+      description: 'Developers access Einstein protocol for instruction-driven game creation.',
     },
     {
       step: '02',
