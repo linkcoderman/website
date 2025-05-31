@@ -99,7 +99,7 @@ const EinsteinLandingPage = () => {
     {
       step: '04',
       title: 'Player Confidence',
-      description: 'Players can independently verify game fairness, building unprecedented trust.',
+      description: 'Players can win massive jackpots, building incredible retention.',
     }
   ];
 
