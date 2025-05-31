@@ -65,7 +65,7 @@ const EinsteinLandingPage = () => {
       items: [
         'Democratizes game development',
         'Build trust with transparent, verifiable outcomes',
-        'Easy integration with existing game engines',
+        'Hyper-casual game creation unlock',
         'Comprehensive documentation and support'
       ]
     },
