@@ -214,7 +214,7 @@ const EinsteinLandingPage = () => {
               A Quantum Leap
             </span>
             <br />
-            <span className="text-white">In Game Development</span>
+            <span className="text-white">in Game Development</span>
           </motion.h1>
           
           <motion.p
@@ -223,7 +223,7 @@ const EinsteinLandingPage = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-xl md:text-2xl text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed"
           >
-            Einstein protocol is <span className="text-cyan-400 font-semibold">designed to be instructable and scalable</span>. It eilminates time to market and enables a new paradigm.
+            Einstein protocol is <span className="text-cyan-400 font-semibold">designed to be instructable and scalable</span>. It <span className="text-emerald-400">expands the universe of developers</span> and enables a <span className="text-fuchsia-400">new asset class</span>.
           </motion.p>
 
           <motion.div
