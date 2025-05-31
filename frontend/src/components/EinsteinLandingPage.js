@@ -99,7 +99,7 @@ const EinsteinLandingPage = () => {
     {
       step: '04',
       title: 'Player Confidence',
-      description: 'Players can win massive jackpots, building incredible retention.',
+      description: 'Players can win massive jackpots, building incredible interest and retention.',
     }
   ];
 
