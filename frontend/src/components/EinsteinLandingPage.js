@@ -348,7 +348,7 @@ const EinsteinLandingPage = () => {
               </span>
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              A seamless integration process that brings cryptographic verification to any game
+              A seamless integration process that brings fungible tokens to any game
             </p>
           </motion.div>
 
