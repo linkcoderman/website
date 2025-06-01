@@ -45,7 +45,7 @@ const EinsteinLandingPage = () => {
     {
       icon: Gamepad2,
       title: 'AI Infrastructure',
-      description: 'Ignite Creativity and Trust with our fine-tuned LLMs, engineered for seamless integration within the ZK-JS framework.'
+      description: 'Ignite creativity and trust with our fine-tuned LLMs, engineered for seamless integration within the ZK-JS framework.'
     },
     {
       icon: Zap,
