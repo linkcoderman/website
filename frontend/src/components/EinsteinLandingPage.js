@@ -88,8 +88,8 @@ const EinsteinLandingPage = () => {
     },
     {
       step: '02',
-      title: 'ZKP Generation',
-      description: 'Game outcomes generate zero-knowledge proofs automatically without revealing private data.',
+      title: 'Scalable ZK-Proofing',
+      description: 'AI-generated game logic is automatically equipped with zero-knowledge proofs, ensuring fair play and transparent novel reward distribution for hyper-casual games at scale.',
     },
     {
       step: '03',
