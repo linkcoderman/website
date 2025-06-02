@@ -40,22 +40,22 @@ const EinsteinLandingPage = () => {
     {
       icon: Code,
       title: 'Neural Game Engine',
-      description: 'AI-driven tools for rapid game creation, opening development to more creators and enabling diverse reward models.'
+      description: 'AI-driven tools for rapid hyper-casual game creation, opening development to more creators and enabling diverse reward models.'
     },
     {
       icon: Gamepad2,
       title: 'AI Infrastructure',
-      description: 'Scalable LLMs and ZK-JS empower a wide range of developers to launch countless games with unique, verifiable rewards.'
+      description: 'Scalable LLMs and ZK-JS empower a wide range of developers to launch hyper-casual games with unique, verifiable rewards.'
     },
     {
       icon: Zap,
       title: 'Lightning-Fast Payments',
-      description: 'Instant on-chain payments enables smooth gameplay and immediate, trustworthy reward distribution for games at scale.'
+      description: 'Instant on-chain payments enables smooth gameplay and immediate, trustworthy reward distribution for hyper-casual games at scale.'
     },
     {
       icon: Shield,
       title: 'Zero-Knowledge Proofs',
-      description: 'Core cryptographic technology ensuring fairness and transparency for novel reward mechanisms in mass-market games.'
+      description: 'Core cryptographic technology ensuring fairness and transparency for novel reward mechanisms in hyper-casual games.'
     }
   ];
 
@@ -65,14 +65,14 @@ const EinsteinLandingPage = () => {
       items: [
         'Democratizes game development',
         'Build trust with transparent, verifiable outcomes',
-        'Significant game creation unlock',
+        'Significant hyper-casual game creation unlock',
         'Comprehensive documentation and support'
       ]
     },
     {
       category: 'Players',
       items: [
-        'Winner takes all rewards',
+        'Fair & transparent rewards',
         'Transparent and verifiable outcomes',
         'Enhanced gaming experience with verifiability',
         'True ownership of game assets and achievements'
