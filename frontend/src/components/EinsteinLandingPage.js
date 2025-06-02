@@ -38,9 +38,9 @@ const EinsteinLandingPage = () => {
 
   const features = [
     {
-      icon: Shield,
-      title: 'Zero-Knowledge Proofs',
-      description: 'Cryptographic verification ensuring game results are tamper-proof without revealing sensitive data.'
+      icon: Code,
+      title: 'Neural Game Engine',
+      description: 'Comprehensive tools and APIs to integrate verifiable gaming logic into any game.'
     },
     {
       icon: Gamepad2,
@@ -53,9 +53,9 @@ const EinsteinLandingPage = () => {
       description: 'Instant proof generation and verification for real-time gaming experiences.'
     },
     {
-      icon: Code,
-      title: 'Neural Game Engine',
-      description: 'Comprehensive tools and APIs to integrate verifiable gaming logic into any game.'
+      icon: Shield,
+      title: 'Zero-Knowledge Proofs',
+      description: 'Cryptographic verification ensuring game results are tamper-proof without revealing sensitive data.'
     }
   ];
 
