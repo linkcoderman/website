@@ -94,7 +94,7 @@ const EinsteinLandingPage = () => {
     {
       step: '03',
       title: 'On-Chain Reward Logic',
-      description: 'Verified proofs trigger transparent on-chain logic, enabling automated and novel reward distribution for countless games.',
+      description: 'Verified proofs trigger transparent on-chain logic.',
     },
     {
       step: '04',
