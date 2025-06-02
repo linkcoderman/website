@@ -457,8 +457,8 @@ const EinsteinLandingPage = () => {
               </span>
             </h2>
             <p className="text-xl text-gray-300 mb-12 leading-relaxed">
-              Join the revolution of AI gaming. Start integrating Einstein protocol 
-              into your games today and give your players incredible incentives.
+              Join the revolution in game development. Use Einstein protocol 
+              to build games at scale and offer your players novel reward mechanisms.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
