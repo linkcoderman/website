@@ -40,22 +40,22 @@ const EinsteinLandingPage = () => {
     {
       icon: Code,
       title: 'Neural Game Engine',
-      description: 'AI-driven tools for rapid hyper-casual game creation, opening development to more creators and enabling diverse reward models.'
+      description: 'AI-driven tools for rapid game creation, opening development to more creators and enabling diverse reward models.'
     },
     {
       icon: Gamepad2,
       title: 'AI Infrastructure',
-      description: 'Scalable LLMs and ZK-JS empower a wide range of developers to launch countless hyper-casual games with unique, verifiable rewards.'
+      description: 'Scalable LLMs and ZK-JS empower a wide range of developers to launch countless games with unique, verifiable rewards.'
     },
     {
       icon: Zap,
       title: 'Lightning-Fast Verification',
-      description: 'Instant on-chain proof validation enables smooth gameplay and immediate, trustworthy reward distribution for hyper-casual games at scale.'
+      description: 'Instant on-chain proof validation enables smooth gameplay and immediate, trustworthy reward distribution for games at scale.'
     },
     {
       icon: Shield,
       title: 'Zero-Knowledge Proofs',
-      description: 'Core cryptographic technology ensuring fairness and transparency for novel reward mechanisms in mass-market hyper-casual games.'
+      description: 'Core cryptographic technology ensuring fairness and transparency for novel reward mechanisms in mass-market games.'
     }
   ];
 
@@ -65,7 +65,7 @@ const EinsteinLandingPage = () => {
       items: [
         'Democratizes game development',
         'Build trust with transparent, verifiable outcomes',
-        'Significant hyper-casual game creation unlock',
+        'Significant game creation unlock',
         'Comprehensive documentation and support'
       ]
     },
@@ -89,17 +89,17 @@ const EinsteinLandingPage = () => {
     {
       step: '02',
       title: 'Scalable ZK-Proofing',
-      description: 'AI-generated game logic is automatically equipped with zero-knowledge proofs, ensuring fair play and transparent novel reward distribution for hyper-casual games at scale.',
+      description: 'AI-generated game logic is automatically equipped with zero-knowledge proofs.',
     },
     {
       step: '03',
       title: 'On-Chain Reward Logic',
-      description: 'Verified proofs trigger transparent on-chain logic, enabling automated and novel reward distribution for countless hyper-casual games.',
+      description: 'Verified proofs trigger transparent on-chain logic, enabling automated and novel reward distribution for countless games.',
     },
     {
       step: '04',
       title: 'Massive Player Engagement',
-      description: 'Developers can offer countless hyper-casual games with unique, verifiable rewards, fostering unprecedented player engagement and opening new monetization avenues.'
+      description: 'Developers can offer countless games with unique, verifiable rewards, fostering unprecedented player engagement and opening new monetization avenues.'
     }
   ];
 
@@ -223,7 +223,7 @@ const EinsteinLandingPage = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-xl md:text-2xl text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed"
           >
-            Einstein protocol is <span className="text-cyan-400 font-semibold">designed to produce hyper-causal games at scale</span>. It expands the universe of developers and enables <span className="text-fuchsia-400">novel reward mechanisms</span>.
+            Einstein protocol is <span className="text-cyan-400 font-semibold">designed to produce games at scale</span>. It expands the universe of developers and enables <span className="text-fuchsia-400">novel reward mechanisms</span>.
           </motion.p>
 
           <motion.div
