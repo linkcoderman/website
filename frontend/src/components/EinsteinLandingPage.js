@@ -73,8 +73,8 @@ const EinsteinLandingPage = () => {
       category: 'Players',
       items: [
         'Winner takes all rewards',
-        'Transparent and verifiable results',
-        'Enhanced gaming experience with trust',
+        'Transparent and verifiable outcomes',
+        'Enhanced gaming experience with verifiability',
         'True ownership of game assets and achievements'
       ]
     }
