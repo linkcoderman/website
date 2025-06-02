@@ -45,7 +45,7 @@ const EinsteinLandingPage = () => {
     {
       icon: Gamepad2,
       title: 'AI Infrastructure',
-      description: 'Scalable LLMs and ZK-JS empower a wide range of developers to launch hyper-casual games with unique, verifiable rewards.'
+      description: 'Scalable LLMs a empower a wide range of developers to launch countless games with unique, verifiable rewards.'
     },
     {
       icon: Zap,
