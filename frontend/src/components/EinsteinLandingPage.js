@@ -99,7 +99,7 @@ const EinsteinLandingPage = () => {
     {
       step: '04',
       title: 'Massive Player Engagement',
-      description: 'Developers can offer countless games with unique, verifiable rewards, fostering unprecedented player engagement and opening new monetization avenues.'
+      description: 'Developers can offer countless games with unique, verifiable rewards.'
     }
   ];
 
