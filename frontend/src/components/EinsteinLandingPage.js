@@ -40,7 +40,7 @@ const EinsteinLandingPage = () => {
     {
       icon: Code,
       title: 'Neural Game Engine',
-      description: 'AI-driven tools for rapid hyper-casual game creation, opening development to more creators and enabling diverse reward models.'
+      description: 'AI-driven tools for rapid game creation, opening development to more creators and enabling diverse reward models.'
     },
     {
       icon: Gamepad2,
@@ -348,7 +348,7 @@ const EinsteinLandingPage = () => {
               </span>
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              A streamlined pathway for all developers to launch games
+              A streamlined pathway for all developers to launch hyper-casual games
             </p>
           </motion.div>
 
@@ -397,7 +397,7 @@ const EinsteinLandingPage = () => {
               </span>
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Empowering a new wave of game creators 
+              Empowering a new wave of hyper-casual game creators 
             </p>
           </motion.div>
 
