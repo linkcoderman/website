@@ -348,7 +348,7 @@ const EinsteinLandingPage = () => {
               </span>
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              A seamless integration process that brings fungible tokens to any game
+              A streamlined pathway for all developers to launch hyper-casual games at scale, complete with innovative and verifiable reward systems.
             </p>
           </motion.div>
 
@@ -397,7 +397,7 @@ const EinsteinLandingPage = () => {
               </span>
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Einstein lowers the barrier to game development empowering everyday users
+              Empowering a new wave of game creators and offering players exciting, provably fair hyper-casual experiences with unique rewards.
             </p>
           </motion.div>
 
