@@ -40,22 +40,22 @@ const EinsteinLandingPage = () => {
     {
       icon: Code,
       title: 'Neural Game Engine',
-      description: 'Comprehensive tools and APIs to integrate verifiable gaming logic into any game.'
+      description: 'AI-driven tools for rapid hyper-casual game creation, opening development to more creators and enabling diverse reward models.'
     },
     {
       icon: Gamepad2,
       title: 'AI Infrastructure',
-      description: 'Ignite creativity and trust with our fine-tuned LLMs, engineered for seamless integration within the ZK-JS framework.'
+      description: 'Scalable LLMs and ZK-JS empower a wide range of developers to launch countless hyper-casual games with unique, verifiable rewards.'
     },
     {
       icon: Zap,
       title: 'Lightning-Fast Verification',
-      description: 'Instant proof generation and verification for real-time gaming experiences.'
+      description: 'Instant on-chain proof validation enables smooth gameplay and immediate, trustworthy reward distribution for hyper-casual games at scale.'
     },
     {
       icon: Shield,
       title: 'Zero-Knowledge Proofs',
-      description: 'Cryptographic verification ensuring game results are tamper-proof without revealing sensitive data.'
+      description: 'Core cryptographic technology ensuring fairness and transparency for novel reward mechanisms in mass-market hyper-casual games.'
     }
   ];
 
