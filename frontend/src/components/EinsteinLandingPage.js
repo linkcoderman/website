@@ -55,7 +55,7 @@ const EinsteinLandingPage = () => {
     {
       icon: Shield,
       title: 'Zero-Knowledge Proofs',
-      description: 'Core cryptographic technology ensuring fairness and transparency for novel reward mechanisms in hyper-casual games.'
+      description: 'Core cryptographic technology ensuring fairness and transparency for novel reward mechanisms in games.'
     }
   ];
 
@@ -65,7 +65,7 @@ const EinsteinLandingPage = () => {
       items: [
         'Democratizes game development',
         'Build trust with transparent, verifiable outcomes',
-        'Significant hyper-casual game creation unlock',
+        'Rapid game creation unlock',
         'Comprehensive documentation and support'
       ]
     },
