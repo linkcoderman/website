@@ -50,7 +50,7 @@ const EinsteinLandingPage = () => {
     {
       icon: Zap,
       title: 'Lightning-Fast Payments',
-      description: 'Instant on-chain proof validation enables smooth gameplay and immediate, trustworthy reward distribution for games at scale.'
+      description: 'Instant on-chain payments enables smooth gameplay and immediate, trustworthy reward distribution for games at scale.'
     },
     {
       icon: Shield,
