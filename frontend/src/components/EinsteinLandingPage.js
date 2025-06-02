@@ -93,8 +93,8 @@ const EinsteinLandingPage = () => {
     },
     {
       step: '03',
-      title: 'Trust Layer',
-      description: 'Proofs are verified on-chain, ensuring tamper-proof and transparent results.',
+      title: 'On-Chain Reward Logic',
+      description: 'Verified proofs trigger transparent on-chain logic, enabling automated and novel reward distribution for countless hyper-casual games.',
     },
     {
       step: '04',
