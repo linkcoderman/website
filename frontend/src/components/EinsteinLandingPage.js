@@ -348,7 +348,7 @@ const EinsteinLandingPage = () => {
               </span>
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              A streamlined pathway for all developers to launch hyper-casual games at scale, complete with innovative and verifiable reward systems.
+              A streamlined pathway for all developers to launch games
             </p>
           </motion.div>
 
@@ -397,7 +397,7 @@ const EinsteinLandingPage = () => {
               </span>
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Empowering a new wave of game creators with provably fair experiences and unique rewards.
+              Empowering a new wave of game creators 
             </p>
           </motion.div>
 
