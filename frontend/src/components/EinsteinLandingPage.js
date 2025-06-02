@@ -223,7 +223,7 @@ const EinsteinLandingPage = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-xl md:text-2xl text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed"
           >
-            Einstein protocol is <span className="text-cyan-400 font-semibold">designed to be instructable and scalable</span>. It expands the universe of developers and enables a <span className="text-fuchsia-400">new asset class</span>.
+            Einstein protocol is <span className="text-cyan-400 font-semibold">designed to produce hyper-causal games at scale</span>. It expands the universe of developers and enables <span className="text-fuchsia-400">novel reward mechanisms</span>.
           </motion.p>
 
           <motion.div
