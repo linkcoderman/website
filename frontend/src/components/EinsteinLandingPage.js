@@ -397,7 +397,7 @@ const EinsteinLandingPage = () => {
               </span>
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Empowering a new wave of game creators and offering players exciting, provably fair hyper-casual experiences with unique rewards.
+              Empowering a new wave of game creators with provably fair experiences and unique rewards.
             </p>
           </motion.div>
 
