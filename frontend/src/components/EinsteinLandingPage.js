@@ -50,7 +50,7 @@ const EinsteinLandingPage = () => {
     {
       icon: Zap,
       title: 'Lightning-Fast Payments',
-      description: 'Instant on-chain payments enables smooth gameplay and immediate, trustworthy reward distribution for hyper-casual games at scale.'
+      description: 'Instant on-chain payments enables smooth gameplay and immediate, trustworthy reward distribution for hypercasual games at scale.'
     },
     {
       icon: Shield,
@@ -223,7 +223,7 @@ const EinsteinLandingPage = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-xl md:text-2xl text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed"
           >
-            Einstein protocol is <span className="text-cyan-400 font-semibold">designed to produce hyper-casual games at scale</span>. It expands the universe of developers and enables <span className="text-fuchsia-400">novel reward mechanisms</span>.
+            Einstein protocol is <span className="text-cyan-400 font-semibold">designed to produce hypercasual games at scale</span>. It expands the universe of developers and enables <span className="text-fuchsia-400">novel reward mechanisms</span>.
           </motion.p>
 
           <motion.div
