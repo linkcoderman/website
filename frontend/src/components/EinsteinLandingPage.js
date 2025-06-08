@@ -348,7 +348,7 @@ const EinsteinLandingPage = () => {
               </span>
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              A streamlined pathway for all developers to launch games
+              A streamlined pathway for anyone to launch a casual game
             </p>
           </motion.div>
 
@@ -493,7 +493,7 @@ const EinsteinLandingPage = () => {
             <div>
               <h3 className="text-white font-semibold mb-4">Developers</h3>
               <ul className="space-y-2">
-                <li><a href="https://github.com/zkEinstein" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-cyan-400 transition-colors duration-300">GitHub</a></li>
+                <li><a href="https://github.com/linkcoderman/website" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-cyan-400 transition-colors duration-300">GitHub</a></li>
                 <li><a href="/documentation.html" className="text-gray-400 hover:text-cyan-400 transition-colors duration-300">Documentation</a></li>
                 <li><a href="https://einstein.cool" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-cyan-400 transition-colors duration-300">Cool</a></li>
               </ul>
